@@ -1,0 +1,92 @@
+.navbar
+  = link_to 'Home Page |', root_path
+  = link_to 'Logout', destroy_user_session_path, method: :delete
+.dashboard-box.text-center
+  %h1
+    Dashboard
+
+.search-box-text.text-center
+  Enter url or tag in search box:
+
+.search-box
+  .col-lg-6
+  %form{:action => "/dashboard", :method => "get"}
+    %input.form-control.search-input{style: 'height: 4%; width: 70%;', :name => "search", placeholder: "Search for...", type: "text"}
+    %span.input-group-btn
+      %button.btn.btn-default{style: "margin-bottom: 10px;", :type => "submit"} Search
+- if !@result.nil?
+  - if @result.empty?
+    .not-found-text.text-center
+      Sorry, nothing found. Try it again
+  - else
+    .dashboard-box.text-center
+      %h3
+        Search result:
+    .result
+      %table.table
+        %thead
+          %tr
+            %th
+            %th Url
+            %th Product name
+            %th Like count
+        %tbody
+          - @result.each do |r|
+            %tr
+              %th{:scope => "row"}
+                %td
+                  = r['url']
+                %td
+                  = r['product_names']
+                %td
+                  = r['count']
+
+.dashboard-box.text-center
+  %h3
+    Your product names statistic:
+-if @user_tags_statistic.present?
+  .result
+    %table.table
+      %thead
+        %tr
+          %th
+          %th Product name
+          %th Url
+          %th Like count
+      %tbody
+        - @user_tags_statistic.each do |statistic|
+          %tr
+            %th{:scope => "row"}
+              %td
+                = statistic['product_names']
+              %td
+                = statistic['url']
+              %td
+                = statistic['count']
+- else
+  .not-found-text.text-center
+    Your statistic are empty
+
+- if current_user.admin?
+  .dashboard-box.text-center
+    %h3
+      Top 10 most clicked:
+  -if @top_likes.present?
+    .result
+      %table.table
+        %thead
+          %tr
+            %th
+            %th Url
+            %th Product name
+            %th Like count
+        %tbody
+          - @top_likes.each do |top|
+            %tr
+              %th{:scope => "row"}
+                %td
+                  = top.url
+                %td
+                  = top.product_name
+                %td
+                  = top.like_count

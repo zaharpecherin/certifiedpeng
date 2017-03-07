@@ -1,0 +1,104 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+//@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.navbar {
+  text-align: right;
+  margin-right: 30px;
+  margin-top: 30px;
+}
+
+.navbar a {
+  text-decoration: none;
+}
+
+.home-page {
+  margin-top: 40px;
+  text-align: center;
+  margin-right: 7%;
+}
+
+.main-text{
+  text-align: center;
+  margin-top: 15%;
+  margin-right: 8%;
+}
+
+.scriptBox{
+  margin-top: 20px;
+  width: 50%;
+  height: 70px;
+  background: #f9f9f9;
+  padding: 30px;
+  color: #646464;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.alert-danger {
+  margin-top: 30px;
+  margin-left: 10%;
+  margin-right: 10%;
+  height: 35px;
+  text-align: center;
+  padding-top: 7px;
+  border-radius: 5px;
+}
+
+.alert-success {
+  margin-top: 30px;
+  margin-left: 10%;
+  margin-right: 10%;
+  height: 35px;
+  text-align: center;
+  padding-top: 7px;
+  border-radius: 5px;
+}
+
+.links {
+  margin-top: 30px;
+}
+
+.links a{
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+.search-box {
+  margin-top: 2%;
+  margin-left: 36%;
+  margin-right: 36%;
+}
+
+.dashboard-box {
+  margin-top: 6%;
+}
+
+.not-found-text {
+  font-size: 11pt;
+  background: #cecece;
+  margin-left: 35%;
+  margin-right: 35%;
+  padding: 5px;
+  border-radius: 15px;
+}

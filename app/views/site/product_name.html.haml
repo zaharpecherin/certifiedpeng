@@ -1,0 +1,184 @@
+:plain
+  var domain = 'www.certifiedpeng.com';
+  // var domain = 'sinatra-likes.herokuapp.com';
+  // var domain = 'a36f4249.ngrok.io';
+  var product_name = #{@product_name};
+  var url = window.location.href;
+  var ALERT_BUTTON_TEXT = "Ok";
+  var facebook_app_id = 1102341536470522;
+  var css_like_count = {'vertical-align': 'middle', 'margin-left': 10, 'font-weight': 'bold'};
+  var css_facebook_share = {'background': '#4267b2', 'border-radius': 3, 'margin-left': 10, 'padding': 2, 'font-size': 13, 'color': '#e7e7e7', 'vertical-align': 'middle' };
+  var css_like_button = {'opacity': 0.6, 'vertical-align': 'middle' };
+  var css_modal_container = {'background-color': 'rgba(0, 0, 0, 0.00)', 'position': 'absolute', 'width': '100%', 'height': '100%', 'top': 0, 'left': 0, 'z-index': 10000 };
+  var css_alert_box = { 'position': 'absolute', 'width': 300, 'min-height': 100, 'border': '1px solid #666', 'background-color': '#d7d7d7', 'background-repeat': 'no-repeat', 'background-position': '20px 30px', 'margin': 'auto', 'top': 0, 'right': 0, 'height': 80, 'padding-top': 10 };
+  var css_button_close = { 'display': 'block', 'position': 'relative', 'margin': '5px auto', 'padding': 7, 'border': '0 none', 'width': 70, 'font': '0.7em verdana, arial', 'text-align': 'center', 'color': '#FFF', 'background-color': '#357EBD', 'border-radius': 3, 'text-decoration': 'none'};
+  var css_p = {'padding-left': 20, 'font-family': 'tahoma'};
+
+
+  function loadScript(url, callback) {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    if (script.readyState) {  //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' || script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else {
+      script.onload = function() {
+        callback();
+      };
+    }
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+
+  function like() {
+    $('.likeButton').click(function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: 'http://' + domain + '/like?product_name=' + product_name + '&url=' + url,
+        method: 'GET',
+        cache: false,
+        crossDomain: true,
+        dataType: 'json',
+        success: function(data) {
+          if (data.liked == 1) {
+            alert('Only 1 click is allowed - thank you', data.mobile);
+          } else {
+            showCount(data);
+          }
+        }
+      });
+    });
+  }
+
+  function pageLikeCount() {
+    $.ajax({
+      url: 'http://' + domain + '/page-like-count?product_name=' + product_name + '&url=' + url,
+      method: 'GET',
+      cache: false,
+      crossDomain: true,
+      dataType: 'json',
+      success: function(data) {
+        $.when($('.sinatra-like-button').append('<a href=""><span><img class="likeButton" src="https://s22.postimg.org/ysw3b5mwx/certified_peng_button.png" width="64px" style="vertical-align: middle;"></span></a>')).then(like());
+        if (data.liked == 1) {
+          showCount(data);
+        } else if ( data.liked == 0 && data.like_count > 0) {
+          showLikeText(data);
+
+        }
+      }
+    });
+  }
+
+  function showLikeText(data) {
+    like_count = document.createElement('span');
+    $(like_count).addClass('likeCount');
+    var text = ' agree on this Pengness';
+    $(like_count)['0'].innerText = data.like_count + text;
+    $(like_count).css(css_like_count);
+    $('.sinatra-like-button').append(like_count);
+  }
+
+  function showCount(data) {
+    $('.sinatra-like-button').find('.likeCount').remove();
+    facebook_share = document.createElement('span');
+    $(facebook_share).addClass('facebookShare');
+    $(facebook_share).css(css_facebook_share);
+    $(facebook_share)['0'].innerText = 'Share on Facebook';
+
+    $('.sinatra-like-button').append('<a href="" class="facebookLink" style="text-decoration: none;" onclick="share_on_facebook(event);"></a>');
+    $('.sinatra-like-button').append('<a href="whatsapp://send?text=The text to share!%20'+ encodeURIComponent(url) +'" data-action="share/whatsapp/share" style="background: #41ef0f; border-radius: 3px; margin-left: 10px; vertical-align: middle; font-size: 13px; padding: 2px; color: white; text-decoration: none;" data-href="'+ url + '" class="wa_btn wa_btn_s">Share on Whatsapp</a>');
+    $('.facebookLink').append(facebook_share);
+
+
+  showLikeText(data);
+    $('.likeButton').css(css_like_button);
+  }
+
+  function createCustomAlert(txt, mobile) {
+    d = document;
+
+    if(d.getElementById("modalContainer")) return;
+
+    mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
+    mObj.id = "modalContainer";
+    mObj.style.height = d.documentElement.scrollHeight + "px";
+
+    alertObj = mObj.appendChild(d.createElement("div"));
+    alertObj.id = "alertBox";
+    if(d.all && !window.opera) alertObj.style.top = document.documentElement.scrollTop + "px";
+    alertObj.style.left = (d.documentElement.scrollWidth - alertObj.offsetWidth)/2 + "px";
+    alertObj.style.visiblity="visible";
+
+
+    msg = alertObj.appendChild(d.createElement("p"));
+    //msg.appendChild(d.createTextNode(txt));
+    $(msg).css(css_p);
+
+    msg.innerHTML = txt;
+
+    btn = alertObj.appendChild(d.createElement("a"));
+    btn.id = "closeBtn";
+    btn.appendChild(d.createTextNode(ALERT_BUTTON_TEXT));
+    btn.href = "#";
+    btn.onclick = function() { removeCustomAlert();return false; }
+
+    alertObj.style.display = "block";
+    $('#modalContainer').css(css_modal_container);
+    $('#alertBox').css(css_alert_box);
+      if (mobile == 0) {
+        $('#alertBox').css('bottom', 0);
+      } else {
+        $('#alertBox').css('bottom', 600);
+      }
+    $('#closeBtn').css(css_button_close);
+
+  }
+
+  function removeCustomAlert() {
+  document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
+  }
+
+  function share_on_facebook() {
+    event.preventDefault();
+    window.open('https://www.facebook.com/dialog/feed?app_id=' + facebook_app_id + '&name=I can\'t deny it...I have witnessed pengness. I need to share this peng ting. Enjoy!' + '&display=popup&link=' + url + '&description=Is my vision off? Have you seen better pengness? Share @ Certified Peng: www.certifiedpeng.com', 'popup', 'height=500, width=500');
+  }
+
+  function includeXdomainrequest() {
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.3/jquery.xdomainrequest.min.js', function() {
+      includeWhatsAppSharing();
+    });
+  }
+
+  function includeWhatsAppSharing() {
+    loadScript('https://cdn.jsdelivr.net/whatsapp-sharing/1.3.3/whatsapp-button.js', function() {
+      pageLikeCount();
+    });
+  }
+
+  function ready() {
+    console.log(typeof jQuery);
+    if (typeof jQuery == 'undefined') {
+      loadScript('https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js', function() {
+        $( document ).ready(function() {
+          includeXdomainrequest();
+        });
+      });
+    } else {
+      $( document ).ready(function() {
+        includeXdomainrequest();
+      });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', ready);
+
+  if(document.getElementById) {
+    window.alert = function(txt, mobile) {
+      createCustomAlert(txt, mobile);
+    }
+  }

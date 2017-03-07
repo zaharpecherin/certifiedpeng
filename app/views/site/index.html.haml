@@ -1,0 +1,26 @@
+.navbar
+  - if !user_signed_in?
+    = link_to 'Dashboard |', dashboard_path
+    = link_to 'Signup |', new_user_registration_path
+    = link_to 'Login', user_session_path
+  - else
+    = link_to 'Dashboard |', dashboard_path
+    = link_to 'Logout', destroy_user_session_path, method: :delete
+
+.home-page
+  %h1
+    СertifiedPeng
+
+.sinatra-like-button
+  %script{:src => "http://localhost:3000/like-button/{PRODUCT-NAME}", :type => "text/javascript"}
+
+.main-text
+  %h5 Copy/paste the code into your website:
+.scriptBox
+  = '<div class="sinatra-like-button">'
+  %br
+  = "<script src='https://certifiedpeng.herokuapp.com/like-button/{PRODUCT-NAME}' type='text/javascript'></script>"
+  %br
+  = "</div>"
+
+
