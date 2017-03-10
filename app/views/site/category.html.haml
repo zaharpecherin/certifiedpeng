@@ -1,0 +1,80 @@
+.navbar
+  - if !user_signed_in?
+    = link_to 'Dashboard |', dashboard_path
+    = link_to 'Signup |', new_user_registration_path
+    = link_to 'Login', user_session_path
+  - else
+    = link_to 'Home Page |', root_path
+    = link_to 'Dashboard |', dashboard_path
+    = link_to 'Logout', destroy_user_session_path, method: :delete
+
+
+.home-page
+  %h1
+    СertifiedPeng
+  %p
+    = image_tag('certified-peng.png', :class => "main_logo")
+
+.image-panel
+  .container
+    .row
+      .col-md-12.text-center
+        %h3
+          = @category.name
+        = image_tag 'image-video.png', class: 'image-video-box'
+
+.title-box
+  %h3.text-center
+    Title
+  %p
+    Check This Out some copy text and some more copy text Check This Out some copy text and some more copy text
+  %p
+    Check This Out some copy text and some more copy text Check This Out some copy text and some more copy text
+  %p
+    Check This Out some copy text and some more copy text Check This Out some copy text and some more copy text
+  %p
+    Check This Out some copy text and some more copy text Check This Out some copy text and some more copy text
+
+.share-links
+  .row
+    .col-md-4.text-center
+      %p
+        = link_to "#", onclick: 'share_facebook(event);', class:'click' do
+          Share Facebook
+    .col-md-4.text-center
+      %p
+        %a{:href => "whatsapp://send?text=Share on whatsapp"} Share on WhatsApp
+    .col-md-4.text-center
+      %p
+        = link_to '#', onclick: 'share_twitter(event);', class:'click' do
+          %script{ type: "text/javascript", src:  "//newsharecounts.s3-us-west-2.amazonaws.com/nsc.js"}
+          Share Twitter
+
+.main-text
+  %h3 Get the Certified Peng button for your content:
+.scriptBox
+  = '<div class="sinatra-like-button">'
+  %br
+  = "<script src='https://certifiedpeng.herokuapp.com/like-button/{PRODUCT-NAME}' type='text/javascript'></script>"
+  %br
+  = "</div>"
+
+
+%hr
+  .navbar
+    %span.footer
+      Gorilla Theory Labs 2017
+    %span.footer{style: 'float: right;'}
+      =link_to 'Contact Us', contact_us_path
+      =link_to 'Advertise'
+
+
+:javascript
+  function share_facebook() {
+    event.preventDefault();
+    window.open("https://www.facebook.com/dialog/feed?app_id=1102341536470522&name=CertifiedPeng&display=popup&link=http://certifiedpeng.com&description=Share this amazing service!",'popup','height=500,width=500')
+  }
+  function share_twitter(event) {
+    event.preventDefault();
+    window.open("http://twitter.com/share?url=#{ENV['HOST']}&text=Share this amazing service!", 'twitterwindow', 'height=450, width=550, top='+($(window).height()/2 - 225) +', left='+$(window).width()/2 +', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+  }

@@ -4,8 +4,12 @@
     = link_to 'Signup |', new_user_registration_path
     = link_to 'Login', user_session_path
   - else
+    = link_to 'My Tags |', user_tags_path
     = link_to 'Dashboard |', dashboard_path
     = link_to 'Logout', destroy_user_session_path, method: :delete
+
+-#.sinatra-like-button
+-#  %script{:src => "https://387c50ef.ngrok.io/like-button/test", :type => "text/javascript"}
 
 .home-page
   %h1
@@ -13,13 +17,37 @@
   %p
     = image_tag('certified-peng.png', :class => "main_logo")
 
+.image-panel
+  .container
+    .row
+      - @categories.each do |category|
+        .col-md-4.text-center
+          %h3
+            = category.name
+          = link_to category_path(category.name) do
+            = image_tag 'home-page-image.png', class: 'image-box'
+          %h3 Check This Out
+
+
 .main-text
-  %h5 Copy/paste the code into your website:
+  %h3 Get the Certified Peng button for your content:
 .scriptBox
   = '<div class="sinatra-like-button">'
   %br
   = "<script src='https://certifiedpeng.herokuapp.com/like-button/{PRODUCT-NAME}' type='text/javascript'></script>"
   %br
   = "</div>"
+
+.text-box
+  %p
+    Some text goes here...and more and more and more...
+
+%hr
+  .navbar
+    %span.footer
+      Gorilla Theory Labs 2017
+    %span.footer{style: 'float: right;'}
+      =link_to 'Contact Us', contact_us_path
+      =link_to 'Advertise'
 
 

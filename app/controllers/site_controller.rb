@@ -1,9 +1,10 @@
 class SiteController < ApplicationController
-  layout false, only: [:product_name]
+  layout false, only: [:product_name, :page_like_count, :like]
+  # protect_from_forgery except: :product_name
 
 
   def index
-    @like = Like.first
+    @categories = Category.all
   end
 
   def dashboard
@@ -39,10 +40,56 @@ class SiteController < ApplicationController
     else
       redirect_to user_session_path
     end
-
-
   end
 
+  def category
+    @category = Category.find_by_name(params[:name])
+  end
+
+  def user_tags
+    max_tags = 5
+    if params[:tags].present?
+      tags = params[:tags].split(',')
+      if current_user.products.count == max_tags
+        flash[:error] = "You can't add more tags"
+        redirect_to user_tags_path
+      elsif (tags.count + current_user.products.count) > max_tags
+        flash[:error] = "You entered too many tags"
+        redirect_to user_tags_path
+      else
+        tags.each do |tag|
+          Product.create(product_name: tag, user_id: current_user.id)
+          redirect_to user_tags_path
+        end
+      end
+    end
+    @not_added_tags = max_tags - current_user.products.count
+    @tags = current_user.products
+  end
+
+  def contact_us
+  end
+
+  def sent_email
+    # email = ['online@gorillatheory.com', 'henrychuks@hotmail.com']
+    recipient_emails = ['astahovdanil@inbox.ru', 'dynindanya@mail.ru']
+    if params["g-recaptcha-response"].present?
+      name = params[:name]
+      email = params[:email]
+      telephone = params[:telephone] if params[:telephone]
+      reason = params[:reason]
+      recipient_emails.each do |recipient|
+        NotificationMailer.contact_us_notification(name, email, telephone, reason, recipient).deliver
+      end
+
+      flash[:notice] = "Thank you for your feedback"
+      redirect_to contact_us_path
+    else
+      flash[:error] = "Do not ignore reCAPTCHA checkbox"
+      redirect_to contact_us_path
+    end
+
+  end
 
   def get_like_statistic(query, param, type=nil)
     @result = []
@@ -60,12 +107,17 @@ class SiteController < ApplicationController
   end
 
   def product_name
-    # headers "Content-Type" => "text/javascript; charset=utf8"
+    headers["Content-Type"] = "text/javascript; charset=utf8"
+    headers['Access-Control-Allow-Origin'] = '*'
+
     @product_name = params[:product_name]
   end
 
 # #create like
   def like
+    headers["Content-Type"] = "text/javascript; charset=utf8"
+    headers['Access-Control-Allow-Origin'] = '*'
+
     puts params.inspect
     likes = Like.where(url: params[:url], product_name: params[:product_name])
     like_page_by_ip_rel = likes.where(ip: request.ip)
@@ -87,10 +139,10 @@ class SiteController < ApplicationController
 
 # #get like count
   def page_like_count
+    headers['Access-Control-Allow-Origin'] = '*'
     likes = Like.where(url: params[:url], product_name: params[:product_name])
     like_page_by_ip = likes.where(ip: request.ip).first
 
     render json:{ like_count: likes.count, liked: (like_page_by_ip ? 1 : 0) }
   end
-
 end

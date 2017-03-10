@@ -12,7 +12,6 @@
  *
  */
 
-//@import "bootstrap-sprockets";
 @import "bootstrap";
 
 body {
@@ -33,7 +32,6 @@ body {
 .home-page {
   margin-top: 40px;
   text-align: center;
-  margin-right: 7%;
 
 }
 .home-page h1 {
@@ -42,14 +40,13 @@ body {
 
 .main-text{
   text-align: center;
-  margin-top: 15%;
+  margin-top: 5%;
   margin-right: 8%;
 }
 
 .scriptBox{
+  margin-bottom: 3%;
   margin-top: 20px;
-  width: 50%;
-  height: 70px;
   background: #f9f9f9;
   padding: 30px;
   color: #646464;
@@ -69,7 +66,17 @@ body {
   border-radius: 5px;
 }
 
-.alert-success {
+.alert-info {
+  margin-top: 30px;
+  margin-left: 10%;
+  margin-right: 10%;
+  height: 35px;
+  text-align: center;
+  padding-top: 7px;
+  border-radius: 5px;
+}
+
+.alert-warning {
   margin-top: 30px;
   margin-left: 10%;
   margin-right: 10%;
@@ -109,4 +116,73 @@ body {
 
 .main_logo {
   height: 150px !important;
+}
+
+.footer {
+  padding-left: 30px;
+  float: left;
+  font-size: 18px;
+}
+
+.text-box{
+  margin-top: 20px;
+  padding: 30px;
+  margin-left: 18%;
+  margin-right: 18%;
+  margin-bottom: 20%;
+}
+
+.image-box {
+  width: 300px;
+  height: 300px;
+}
+
+.image-video-box {
+  width: 500px;
+  height: 450px;
+}
+
+.title-box {
+  margin-top: 2%;
+  margin-bottom: 3%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.share-links {
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.contact-us form{
+  margin-left: 35%;
+  margin-right: 35%;
+}
+
+.recapcha {
+  margin-left: 17%;
+  margin-right: 17%;
+  margin-top: 3%;
+  margin-bottom: 2%;
+}
+
+.form-box {
+  margin-top: 10%;
+  margin-left: 40%;
+  margin-right: 40%;
+}
+
+.search-button {
+  margin-left: 36%;
+  margin-right: 36%;
+  width: 27%;
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
+
+.tags-box {
+  margin-top: 20px;
+  padding: 30px;
+  margin-left: 18%;
+  margin-right: 18%
 }

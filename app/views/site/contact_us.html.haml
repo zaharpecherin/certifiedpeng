@@ -1,0 +1,39 @@
+.navbar
+  - if !user_signed_in?
+    = link_to 'Dashboard |', dashboard_path
+    = link_to 'Signup |', new_user_registration_path
+    = link_to 'Login', user_session_path
+  - else
+    = link_to 'Dashboard |', dashboard_path
+    = link_to 'Logout', destroy_user_session_path, method: :delete
+
+.contact-us
+  %h1.text-center Contact Us
+  .row.getInTouch
+    = form_tag sent_email_path do
+      .form-group
+        %label{:for => "InputName"} Name
+        %input#InputName.form-control{:placeholder => "Enter name", :name => "name", :type => "text", :required => true}
+      .form-group
+        %label{:for => "InputEmail"} Email address
+        %input#InputEmail.form-control{"aria-describedby" => "emailHelp", :placeholder => "Enter email", :name => 'email', :type => "email", :required => true}
+      .form-group
+        %label{:for => "telophone"} Telephone
+        %input#telophone.form-control{:name => 'telephone', :type => "tel"}
+      .form-group
+        %label{:for => "reason"} Reason for Contact
+        %select#reason.form-control{:name => 'reason'}
+          %option Advertising
+          %option Dashboard Support
+          %option Analytics
+          %option Peng Suggestion
+      .form-group
+        %label{:for => "message"} Message
+        %textarea#message.form-control{:rows => "3", :name => 'message', :required => true}
+        .recapcha
+          = recaptcha_tags
+      %button.btn.btn-primary{:type => "submit", style: 'width: 100%'} Send
+
+
+
+

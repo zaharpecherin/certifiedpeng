@@ -1,5 +1,6 @@
 .navbar
   = link_to 'Home Page |', root_path
+  = link_to 'My Tags |', user_tags_path
   = link_to 'Logout', destroy_user_session_path, method: :delete
 .dashboard-box.text-center
   %h1
@@ -11,9 +12,9 @@
 .search-box
   .col-lg-6
   %form{:action => "/dashboard", :method => "get"}
-    %input.form-control.search-input{style: 'height: 4%; width: 70%;', :name => "search", placeholder: "Search for...", type: "text"}
-    %span.input-group-btn
-      %button.btn.btn-default{style: "margin-bottom: 10px;", :type => "submit"} Search
+    %input.form-control.search-input{style: 'height: 4%;', :name => "search", placeholder: "Search for...", type: "text"}
+    %button.btn.btn-default.search-button{ :type => "submit"} Search
+
 - if !@result.nil?
   - if @result.empty?
     .not-found-text.text-center
