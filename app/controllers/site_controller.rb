@@ -52,16 +52,14 @@ class SiteController < ApplicationController
       tags = params[:tags].split(',')
       if current_user.products.count == max_tags
         flash[:error] = "You can't add more tags"
-        redirect_to user_tags_path
       elsif (tags.count + current_user.products.count) > max_tags
         flash[:error] = "You entered too many tags"
-        redirect_to user_tags_path
       else
         tags.each do |tag|
           Product.create(product_name: tag, user_id: current_user.id)
-          redirect_to user_tags_path
         end
       end
+      redirect_to user_tags_path
     end
     @not_added_tags = max_tags - current_user.products.count
     @tags = current_user.products
