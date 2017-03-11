@@ -83,5 +83,15 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+
+  config.action_mailer.default_url_options = { :host => 'certifiedpeng.com' }
+  config.action_mailer.smtp_settings = {
+      :port           => 587,
+      :address        => 'smtp.sendgrid.net',
+      :user_name      => 'apikey',
+      :password       => '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',
+      :authentication => :plain,
+  }
   config.action_mailer.delivery_method = :smtp
 end
