@@ -70,7 +70,7 @@ class SiteController < ApplicationController
 
   def sent_email
     # email = ['online@gorillatheory.com', 'henrychuks@hotmail.com']
-    recipient_emails = ['astahovdanil@inbox.ru', 'dynindanya@mail.ru']
+    recipient_emails = ['danielsdildo@gmail.com']
     if params["g-recaptcha-response"].present?
       name = params[:name]
       email = params[:email]
