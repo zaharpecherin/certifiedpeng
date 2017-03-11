@@ -76,9 +76,10 @@ class SiteController < ApplicationController
       email = params[:email]
       telephone = params[:telephone] if params[:telephone]
       reason = params[:reason]
-      # recipient_emails.each do |recipient|
-      #   NotificationMailer.contact_us_notification(name, email, telephone, reason, recipient).deliver
-      # end
+      message = params[:message]
+      recipient_emails.each do |recipient|
+        NotificationMailer.contact_us_notification(name, email, telephone, reason, message, recipient).deliver
+      end
 
       flash[:notice] = "Thank you for your feedback"
       redirect_to contact_us_path
