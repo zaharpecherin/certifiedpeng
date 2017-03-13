@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     get '/users', to: 'users/registrations#new'
   end
 
+  resources :subscribers, only: [:new, :create]
+  post '/stripe/webhooks', to: "stripe#webhooks"
+
   root to: 'site#index', as: :root
   get '/dashboard' => 'site#dashboard', as: :dashboard
   get '/like-button/:product_name' => 'site#product_name'

@@ -59,6 +59,7 @@ gem 'haml-rails'
 gem 'pg'
 gem 'pundit'
 gem "recaptcha", require: "recaptcha/rails"
+gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 
 group :development do
   gem 'better_errors'

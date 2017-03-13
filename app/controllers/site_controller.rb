@@ -111,7 +111,7 @@ class SiteController < ApplicationController
     end
   end
 
-  def product_name
+  def pro_name
     headers["Content-Type"] = "text/javascript; charset=utf8"
     headers['Access-Control-Allow-Origin'] = '*'
 
