@@ -48,15 +48,20 @@ class SiteController < ApplicationController
 
   def user_tags
     max_tags = 5
-    if params[:tags].present?
-      tags = params[:tags].split(',')
-      if current_user.products.count == max_tags
-        flash[:error] = "You can't add more tags"
-      elsif (tags.count + current_user.products.count) > max_tags
-        flash[:error] = "You entered too many tags"
+    if params[:tag].present?
+      tag = params[:tag]
+      if (tag.include? " ") || (tag.include? ",")
+        flash[:error] = "Tag must not contain spaces or commas"
       else
-        tags.each do |tag|
-          Product.create(product_name: tag, user_id: current_user.id)
+        existing_tag = Product.find_by_product_name(tag)
+        if existing_tag.present?
+          flash[:error] = "Tag must be unique"
+        else
+          if current_user.products.count == max_tags
+            flash[:error] = "You can't add more tags"
+          else
+            Product.create(product_name: tag, user_id: current_user.id)
+          end
         end
       end
       redirect_to user_tags_path
@@ -65,8 +70,10 @@ class SiteController < ApplicationController
     @tags = current_user.products
   end
 
+
   def contact_us
   end
+
 
   def sent_email
     recipient_emails = ['online@gorillatheory.com', 'henrychuks@hotmail.com']
