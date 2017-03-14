@@ -1,14 +1,14 @@
 class SiteController < ApplicationController
   layout false, only: [:tag_name, :page_like_count, :like]
   protect_from_forgery except: [:tag_name, :page_like_count, :like]
-
+  before_filter :set_access_control_headers, only: [:like, :page_like_count]
 
   def index
     @categories = Category.all
   end
 
   def dashboard
-    if user_signed_in?
+    if current_user
       if !current_user.tags.empty?
         @user_tags_statistic = []
         current_user.tags.each do |tag|
@@ -30,11 +30,11 @@ class SiteController < ApplicationController
         search = Like.where(tag_name: query)
         if search.present?
           urls =  search.select(:url).group(:url).pluck(:url)
-          get_like_statistic(query, urls, 'urls')
+          Like.get_like_statistic(query, urls, 'urls')
         else
           search = Like.where(url: query)
           tag_names = search.select(:tag_name).group(:tag_name).pluck(:tag_name)
-          get_like_statistic(query, tag_names)
+          Like.get_like_statistic(query, tag_names)
         end
       end
     else
@@ -58,7 +58,7 @@ class SiteController < ApplicationController
           flash[:error] = "Tag must be unique"
         else
           if current_user.tags.count == max_tags
-            flash[:error] = "You can't add more tags"
+            flash[:error] = "You can't add more then 5 tags"
           else
             Tag.create(tag_name: tag, user_id: current_user.id)
           end
@@ -96,32 +96,12 @@ class SiteController < ApplicationController
 
   end
 
-  def get_like_statistic(query, param, type=nil)
-    @result = []
-    param.each do |p|
-      if type == 'urls'
-        count = Like.where(tag_name: query, url: p).count
-        hash = {'tag_names' => query, 'url' => p, 'count' => count }
-        @result.push(hash)
-      else
-        count = Like.where(tag_name: p, url: query, ).count
-        hash = {'tag_names' => p, 'url' => query, 'count' => count }
-        @result.push(hash)
-      end
-    end
-  end
-
   def tag_name
-    headers["Content-Type"] = "text/javascript; charset=utf8"
-    headers['Access-Control-Allow-Origin'] = '*'
-
     @tag_name = params[:tag_name]
   end
 
 # #create like
   def like
-    headers["Content-Type"] = "text/javascript; charset=utf8"
-    headers['Access-Control-Allow-Origin'] = '*'
 
     likes = Like.where(url: params[:url], tag_name: params[:tag_name])
     like_page_by_ip_rel = likes.where(ip: request.ip)
@@ -143,10 +123,17 @@ class SiteController < ApplicationController
 
 # #get like count
   def page_like_count
-    headers['Access-Control-Allow-Origin'] = '*'
     likes = Like.where(url: params[:url], tag_name: params[:tag_name])
     like_page_by_ip = likes.where(ip: request.ip).first
 
     render json:{ like_count: likes.count, liked: (like_page_by_ip ? 1 : 0) }
   end
+
+
+  private
+
+  def set_access_control_headers
+    headers['Access-Control-Allow-Origin'] = '*'
+  end
+
 end

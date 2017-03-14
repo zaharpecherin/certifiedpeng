@@ -5,17 +5,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :tags
+  has_one :subscriber
 
   def admin?
     self.id == 1
   end
 
-  def subscriber?
-    user_subscriber = Subscriber.find_by_user_id(self.id)
-    if user_subscriber && (user_subscriber.end_date > Time.now)
-      user_subscriber.subscribed
-    else
-      false
-    end
+  def is_subscriber?
+    self.subscriber && self.subscriber.stripe_id && (self.subscriber.end_date > Time.now)
   end
 end
