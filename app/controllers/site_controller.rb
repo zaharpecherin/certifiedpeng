@@ -74,6 +74,12 @@ class SiteController < ApplicationController
   def contact_us
   end
 
+  def terms
+  end
+
+  def about_us
+  end
+
 
   def sent_email
     recipient_emails = ['online@gorillatheory.com', 'henrychuks@hotmail.com']
