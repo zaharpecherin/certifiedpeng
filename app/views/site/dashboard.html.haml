@@ -29,7 +29,7 @@
           %tr
             %th
             %th Url
-            %th Product name
+            %th Tag name
             %th Like count
         %tbody
           - @result.each do |r|
@@ -38,20 +38,20 @@
                 %td
                   = r['url']
                 %td
-                  = r['product_names']
+                  = r['tag_names']
                 %td
                   = r['count']
 
 .dashboard-box.text-center
   %h3
-    Your product names statistic:
+    Your tag names statistic:
 -if @user_tags_statistic.present?
   .result
     %table.table
       %thead
         %tr
           %th
-          %th Product name
+          %th Tag name
           %th Url
           %th Like count
       %tbody
@@ -59,7 +59,7 @@
           %tr
             %th{:scope => "row"}
               %td
-                = statistic['product_names']
+                = statistic['tag_names']
               %td
                 = statistic['url']
               %td
@@ -79,7 +79,7 @@
           %tr
             %th
             %th Url
-            %th Product name
+            %th Tag name
             %th Like count
         %tbody
           - @top_likes.each do |top|
@@ -88,6 +88,6 @@
                 %td
                   = top.url
                 %td
-                  = top.product_name
+                  = top.tag_name
                 %td
                   = top.like_count

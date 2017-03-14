@@ -1,7 +1,7 @@
 :plain
-  var domain = '387c50ef.ngrok.io';
-  // var domain = 'a36f4249.ngrok.io';
-  var product_name = "#{@product_name};"
+  var domain = 'www.certifiedpeng.com';
+  //var domain = 'bf5c90e6.ngrok.io';
+  var tag_name = "#{@tag_name};"
   var url = window.location.href;
   var ALERT_BUTTON_TEXT = "Ok";
   var facebook_app_id = 1102341536470522;
@@ -38,7 +38,7 @@
     $('.likeButton').click(function(e) {
       e.preventDefault();
       $.ajax({
-        url: 'https://' + domain + '/like?product_name=' + product_name + '&url=' + url,
+        url: 'https://' + domain + '/like?tag_name=' + tag_name + '&url=' + url,
         method: 'GET',
         cache: false,
         crossDomain: true,
@@ -56,7 +56,7 @@
 
   function pageLikeCount() {
     $.ajax({
-      url: 'https://' + domain + '/page-like-count?product_name=' + product_name + '&url=' + url,
+      url: 'https://' + domain + '/page-like-count?tag_name=' + tag_name + '&url=' + url,
       method: 'GET',
       cache: false,
       crossDomain: true,

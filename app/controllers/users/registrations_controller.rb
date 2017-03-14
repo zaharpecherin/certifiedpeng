@@ -10,10 +10,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    if params[:product]
-      products = params[:product].split(' ')
-      products.each do |product|
-        Product.create(user_id: current_user.id, product_name: product)
+    if params[:tag]
+      tags = params[:tag].split(' ')
+      tags.each do |tag|
+        Tag.create(user_id: current_user.id, tag: tag)
       end
     end
   end

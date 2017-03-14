@@ -1,6 +1,6 @@
 class SiteController < ApplicationController
-  layout false, only: [:product_name, :page_like_count, :like]
-  # protect_from_forgery except: :product_name
+  layout false, only: [:tag_name, :page_like_count, :like]
+  protect_from_forgery except: [:tag_name, :page_like_count, :like]
 
 
   def index
@@ -9,32 +9,32 @@ class SiteController < ApplicationController
 
   def dashboard
     if user_signed_in?
-      if !current_user.products.empty?
+      if !current_user.tags.empty?
         @user_tags_statistic = []
-        current_user.products.each do |product|
-          likes = Like.where(product_name: product.product_name)
+        current_user.tags.each do |tag|
+          likes = Like.where(tag_name: tag.tag_name)
           urls =  likes.select(:url).group(:url).pluck(:url)
           urls.each do |u|
-            like_count = Like.where(product_name: product.product_name, url: u).count
-            hash = {'product_names' => product.product_name, 'url' => u, 'count' => like_count }
+            like_count = Like.where(tag_name: tag.tag_name, url: u).count
+            hash = {'tag_names' => tag.tag_name, 'url' => u, 'count' => like_count }
             @user_tags_statistic.push(hash)
           end
         end
       end
 
-      @top_likes = Like.select('count(*) AS like_count, url, product_name').group(:url, :product_name).order('like_count DESC').limit(10)
+      @top_likes = Like.select('count(*) AS like_count, url, tag_name').group(:url, :tag_name).order('like_count DESC').limit(10)
 
       query = params[:search] if params[:search]
 
       if query
-        search = Like.where(product_name: query)
+        search = Like.where(tag_name: query)
         if search.present?
           urls =  search.select(:url).group(:url).pluck(:url)
           get_like_statistic(query, urls, 'urls')
         else
           search = Like.where(url: query)
-          product_names = search.select(:product_name).group(:product_name).pluck(:product_name)
-          get_like_statistic(query, product_names)
+          tag_names = search.select(:tag_name).group(:tag_name).pluck(:tag_name)
+          get_like_statistic(query, tag_names)
         end
       end
     else
@@ -53,21 +53,21 @@ class SiteController < ApplicationController
       if (tag.include? " ") || (tag.include? ",")
         flash[:error] = "Tag must not contain spaces or commas"
       else
-        existing_tag = Product.find_by_product_name(tag)
+        existing_tag = Tag.find_by_tag_name(tag)
         if existing_tag.present?
           flash[:error] = "Tag must be unique"
         else
-          if current_user.products.count == max_tags
+          if current_user.tags.count == max_tags
             flash[:error] = "You can't add more tags"
           else
-            Product.create(product_name: tag, user_id: current_user.id)
+            Tag.create(tag_name: tag, user_id: current_user.id)
           end
         end
       end
       redirect_to user_tags_path
     end
-    @not_added_tags = max_tags - current_user.products.count
-    @tags = current_user.products
+    @not_added_tags = max_tags - current_user.tags.count
+    @tags = current_user.tags
   end
 
 
@@ -100,22 +100,22 @@ class SiteController < ApplicationController
     @result = []
     param.each do |p|
       if type == 'urls'
-        count = Like.where(product_name: query, url: p).count
-        hash = {'product_names' => query, 'url' => p, 'count' => count }
+        count = Like.where(tag_name: query, url: p).count
+        hash = {'tag_names' => query, 'url' => p, 'count' => count }
         @result.push(hash)
       else
-        count = Like.where(product_name: p, url: query, ).count
-        hash = {'product_names' => p, 'url' => query, 'count' => count }
+        count = Like.where(tag_name: p, url: query, ).count
+        hash = {'tag_names' => p, 'url' => query, 'count' => count }
         @result.push(hash)
       end
     end
   end
 
-  def pro_name
+  def tag_name
     headers["Content-Type"] = "text/javascript; charset=utf8"
     headers['Access-Control-Allow-Origin'] = '*'
 
-    @product_name = params[:product_name]
+    @tag_name = params[:tag_name]
   end
 
 # #create like
@@ -123,8 +123,7 @@ class SiteController < ApplicationController
     headers["Content-Type"] = "text/javascript; charset=utf8"
     headers['Access-Control-Allow-Origin'] = '*'
 
-    puts params.inspect
-    likes = Like.where(url: params[:url], product_name: params[:product_name])
+    likes = Like.where(url: params[:url], tag_name: params[:tag_name])
     like_page_by_ip_rel = likes.where(ip: request.ip)
 
     like_page_by_ip = like_page_by_ip_rel.first
@@ -145,7 +144,7 @@ class SiteController < ApplicationController
 # #get like count
   def page_like_count
     headers['Access-Control-Allow-Origin'] = '*'
-    likes = Like.where(url: params[:url], product_name: params[:product_name])
+    likes = Like.where(url: params[:url], tag_name: params[:tag_name])
     like_page_by_ip = likes.where(ip: request.ip).first
 
     render json:{ like_count: likes.count, liked: (like_page_by_ip ? 1 : 0) }
