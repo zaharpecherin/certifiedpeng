@@ -13,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if params[:tag]
       tags = params[:tag].split(' ')
       tags.each do |tag|
-        Tag.create(user_id: current_user.id, tag: tag)
+        Tag.create(user_id: current_user.id, tag_name: tag)
       end
     end
   end
