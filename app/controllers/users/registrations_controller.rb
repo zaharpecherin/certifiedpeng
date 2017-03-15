@@ -15,6 +15,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
+        if params[:tag]
+          tags = params[:tag].split(',')
+          tags.each do |tag|
+            Tag.create(user_id: resource.id, tag_name: tag)
+          end
+        end
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
         respond_with resource, location: after_sign_up_path_for(resource)

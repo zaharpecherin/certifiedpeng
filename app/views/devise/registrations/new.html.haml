@@ -12,7 +12,7 @@
     .form-group
       = f.label :tag
       %br
-      = f.text_field :tag, autocomplete: "off", :name => "tag", placeholder: 'Enter your tag names', :value => params[:tag], class: 'form-control'
+      = f.text_field :tag, autocomplete: "off", :name => "tag", placeholder: 'Enter tags separated by commas', :value => params[:tag], class: 'form-control'
     .form-group
       = f.label :password
       %br
