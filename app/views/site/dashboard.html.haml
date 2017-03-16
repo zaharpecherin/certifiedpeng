@@ -66,7 +66,7 @@
           %th Tracking since
       %tbody
         - @user_tags_statistic.each do |statistic|
-          %tr
+          %tr.link-tr{"data-link" =>  tag_detaling_path(tag: statistic[:tag_names],url: statistic[:url]) }
             %th{:scope => "row"}
               %td
                 = statistic[:tag_names]

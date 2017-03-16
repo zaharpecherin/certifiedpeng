@@ -28,5 +28,8 @@ class TagsController < ApplicationController
     @tag = Tag.find_by_id(params[:id])
   end
 
+  def tag_detailing
+  end
+
 end
 

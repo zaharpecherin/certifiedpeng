@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(document).on('click', '.link-tr', function(e) {
+    var link = e.currentTarget.dataset.link;
+    window.location = link;
+});

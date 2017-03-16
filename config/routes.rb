@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     get '/users', to: 'users/registrations#new'
   end
 
-  resources :tags, only: [:index, :show]
+  resources :tags, only: [:index, :show] do
+    collection do
+      get '/tag-detaling/:tag/:url', action: 'tag_detailing', as: :tag_detaling, constraints: { url: /[A-Z]+[0-9\.]+/ }
+    end
+  end
 
   resources :subscribers, only: [:new, :create]
   post '/stripe/webhooks', to: "stripe#webhooks"
