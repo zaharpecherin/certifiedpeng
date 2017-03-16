@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313151739) do
+ActiveRecord::Schema.define(version: 20170316134110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20170313151739) do
     t.string   "tag_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "country"
   end
 
   create_table "subscribers", force: :cascade do |t|
@@ -40,8 +41,11 @@ ActiveRecord::Schema.define(version: 20170313151739) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "user_id"
-    t.string "tag_name"
+    t.string   "user_id"
+    t.string   "tag_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["tag_name"], name: "index_tags_on_tag_name", unique: true, using: :btree
   end
 
   create_table "users", force: :cascade do |t|

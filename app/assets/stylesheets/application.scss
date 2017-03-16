@@ -32,6 +32,7 @@ body {
 .home-page {
   margin-top: 40px;
   text-align: center;
+  margin-bottom: 5%;
 
 }
 .home-page h1 {
@@ -41,7 +42,6 @@ body {
 .main-text{
   text-align: center;
   margin-top: 5%;
-  margin-right: 8%;
 }
 
 .script-box{
@@ -119,9 +119,12 @@ body {
 }
 
 .footer {
+  position: absolute;
+  bottom: 0;
   padding-left: 30px;
-  float: left;
   font-size: 18px;
+  padding-bottom: 30px;
+  width: 80%;
 }
 
 .footer a {
@@ -169,7 +172,7 @@ body {
 }
 
 .form-box {
-  margin-top: 10%;
+  margin-top: 5%;
   margin-left: 40%;
   margin-right: 40%;
 }
@@ -197,7 +200,26 @@ body {
   padding: 10%;
 }
 
+.error-page-box{
+  margin-top: 5%;
+  text-align: center;
+  border: 1px solid #dcdcdc;
+  border-radius: 15px;
+  padding: 10%;
+  font-size: 20px;
+}
+
 .terms-box {
   margin-top: 5%;
   margin-bottom: 10%;
+}
+
+.text-link {
+  padding-left: 30px;
+  float: left;
+  font-size: 18px;
+}
+
+.result {
+  margin-bottom: 5%;
 }

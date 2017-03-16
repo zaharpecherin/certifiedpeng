@@ -1,7 +1,13 @@
 .navbar
   = link_to 'Home Page |', root_path
-  = link_to 'My Tags |', user_tags_path
+  = link_to 'My Tags |', tags_path
   = link_to 'Logout', destroy_user_session_path, method: :delete
+
+.home-page
+  %p
+    = link_to root_path do
+      = image_tag('certified-peng.png', :class => "main-logo")
+
 .dashboard-box.text-center
   %h1
     Dashboard
@@ -31,20 +37,23 @@
             %th Url
             %th Tag name
             %th Like count
+            %th Tracking since
         %tbody
           - @result.each do |r|
             %tr
               %th{:scope => "row"}
                 %td
-                  = r['url']
+                  = r[:url]
                 %td
-                  = r['tag_names']
+                  = r[:tag_names]
                 %td
-                  = r['count']
+                  = r[:count]
+                %td
+                  = r[:date]
 
 .dashboard-box.text-center
   %h3
-    Your tag names statistic:
+    Your Certified Peng analytics:
 -if @user_tags_statistic.present?
   .result
     %table.table
@@ -54,19 +63,22 @@
           %th Tag name
           %th Url
           %th Like count
+          %th Tracking since
       %tbody
         - @user_tags_statistic.each do |statistic|
           %tr
             %th{:scope => "row"}
               %td
-                = statistic['tag_names']
+                = statistic[:tag_names]
               %td
-                = statistic['url']
+                = statistic[:url]
               %td
-                = statistic['count']
+                = statistic[:count]
+              %td
+                = statistic[:date]
 - else
   .not-found-text.text-center
-    Your statistic are empty
+    Your have no analytics recorded yet
 
 - if current_user.admin?
   .dashboard-box.text-center
@@ -81,6 +93,7 @@
             %th Url
             %th Tag name
             %th Like count
+            %th Tracking since
         %tbody
           - @top_likes.each do |top|
             %tr
@@ -91,3 +104,15 @@
                   = top.tag_name
                 %td
                   = top.like_count
+                %td
+                  = top.created_at.strftime("%d %b %Y")
+
+%hr
+  .navbar
+    %span.text-link
+      Gorilla Theory Labs 2017
+    %span.text-link{style: 'float: right;'}
+      =link_to 'Contact Us', contact_us_path
+      =link_to 'Advertise', contact_us_path
+      =link_to 'About Us', about_us_path
+      =link_to 'Terms', terms_path

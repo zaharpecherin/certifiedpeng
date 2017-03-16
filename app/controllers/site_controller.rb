@@ -1,7 +1,7 @@
 class SiteController < ApplicationController
   layout false, only: [:tag_name, :page_like_count, :like]
   protect_from_forgery except: [:tag_name, :page_like_count, :like]
-  before_filter :set_access_control_headers, only: [:like, :page_like_count]
+  before_filter :set_access_control_headers, only: [:like, :tag_name, :page_like_count]
 
   def index
     @categories = Category.all
@@ -9,6 +9,9 @@ class SiteController < ApplicationController
 
   def dashboard
     if current_user
+      @top_likes = Like.select('count(*) AS like_count, url, tag_name, created_at').group(:url, :tag_name, :created_at).order('like_count DESC').limit(10)
+      query = params[:search] if params[:search]
+
       if !current_user.tags.empty?
         @user_tags_statistic = []
         current_user.tags.each do |tag|
@@ -16,25 +19,22 @@ class SiteController < ApplicationController
           urls =  likes.select(:url).group(:url).pluck(:url)
           urls.each do |u|
             like_count = Like.where(tag_name: tag.tag_name, url: u).count
-            hash = {'tag_names' => tag.tag_name, 'url' => u, 'count' => like_count }
+            like = Like.where(tag_name: tag.tag_name, url: u).order('created_at ASC').first
+            hash = {'tag_names': tag.tag_name, 'url': u, 'count': like_count, date: like.created_at.strftime("%d %b %Y") }
             @user_tags_statistic.push(hash)
           end
         end
       end
 
-      @top_likes = Like.select('count(*) AS like_count, url, tag_name').group(:url, :tag_name).order('like_count DESC').limit(10)
-
-      query = params[:search] if params[:search]
-
       if query
         search = Like.where(tag_name: query)
         if search.present?
           urls =  search.select(:url).group(:url).pluck(:url)
-          Like.get_like_statistic(query, urls, 'urls')
+          @result = Like.get_like_statistic(query, urls, 'urls')
         else
           search = Like.where(url: query)
           tag_names = search.select(:tag_name).group(:tag_name).pluck(:tag_name)
-          Like.get_like_statistic(query, tag_names)
+          @result = Like.get_like_statistic(query, tag_names)
         end
       end
     else
@@ -44,30 +44,6 @@ class SiteController < ApplicationController
 
   def category
     @category = Category.find_by_name(params[:name])
-  end
-
-  def user_tags
-    max_tags = 5
-    if params[:tag].present?
-      tag = params[:tag]
-      if (tag.include? " ") || (tag.include? ",")
-        flash[:error] = "Tag must not contain spaces or commas"
-      else
-        existing_tag = Tag.find_by_tag_name(tag)
-        if existing_tag.present?
-          flash[:error] = "Tag must be unique"
-        else
-          if current_user.tags.count == max_tags
-            flash[:error] = "You can't add more then 5 tags"
-          else
-            Tag.create(tag_name: tag, user_id: current_user.id)
-          end
-        end
-      end
-      redirect_to user_tags_path
-    end
-    @not_added_tags = max_tags - current_user.tags.count
-    @tags = current_user.tags
   end
 
 
@@ -139,6 +115,7 @@ class SiteController < ApplicationController
   private
 
   def set_access_control_headers
+    headers["Content-Type"] = "text/javascript; charset=utf8"
     headers['Access-Control-Allow-Origin'] = '*'
   end
 
