@@ -29,6 +29,10 @@ class TagsController < ApplicationController
   end
 
   def tag_detailing
+    @like = Like.find_by_id(params[:id])
+    @like_count = Like.where(tag_name: @like.tag_name, url: @like.url).count
+    @date = Like.where(tag_name: @like.tag_name, url: @like.url).order('created_at ASC').first
+    @countries = Like.select(:country).where(url: @like.url, tag_name: @like.tag_name).pluck(:country).join(', ')
   end
 
 end

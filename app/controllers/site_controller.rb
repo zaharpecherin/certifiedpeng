@@ -20,7 +20,7 @@ class SiteController < ApplicationController
           urls.each do |u|
             like_count = Like.where(tag_name: tag.tag_name, url: u).count
             like = Like.where(tag_name: tag.tag_name, url: u).order('created_at ASC').first
-            hash = {'tag_names': tag.tag_name, 'url': u, 'count': like_count, date: like.created_at.strftime("%d %b %Y") }
+            hash = {'tag_names': tag.tag_name, 'url': u, 'count': like_count, date: like.created_at.strftime("%d %b %Y"), id: like.id  }
             @user_tags_statistic.push(hash)
           end
         end

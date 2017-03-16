@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   end
 
   resources :tags, only: [:index, :show] do
-    collection do
-      get '/tag-detaling/:tag/:url', action: 'tag_detailing', as: :tag_detaling, constraints: { url: /[A-Z]+[0-9\.]+/ }
+    member do
+      get '/tag-detaling/:id', action: 'tag_detailing', as: :tag_detaling
     end
   end
 

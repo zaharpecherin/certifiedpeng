@@ -12,6 +12,30 @@
   %h1
     Tag detailing
 
+-if @like.present?
+  .result
+    %table.table
+      %thead
+        %tr
+          %th
+          %th Tag name
+          %th Url
+          %th Like count
+          %th Tracking since
+          %th Сountries
+      %tbody
+        %tr
+          %th{:scope => "row"}
+            %td
+              = @like.tag_name
+            %td
+              = @like.url
+            %td
+              = @like_count
+            %td
+              = @date.created_at.strftime("%d %b %Y")
+            %td
+              = @countries
 .footer
   %hr
   %span
