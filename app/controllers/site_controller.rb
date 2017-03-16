@@ -89,7 +89,9 @@ class SiteController < ApplicationController
     like_page_by_ip_rel = likes.where(ip: request.ip)
 
     like_page_by_ip = like_page_by_ip_rel.first
-    like_page_by_ip_rel.first_or_create
+    like_page = like_page_by_ip_rel.first_or_create
+
+    Like.delay.set_location(like_page)
 
     ua = request.user_agent
     mobile = 0

@@ -18,4 +18,15 @@ class Like < ActiveRecord::Base
      @result
   end
 
+  def self.set_location(like_page)
+    begin
+      country = Geocoder.search(like_page.ip).first.country
+      like_page.country = country
+      like_page.save
+    rescue
+      like_page.country = 'NA'
+      like_page.save
+    end
+  end
+
 end
