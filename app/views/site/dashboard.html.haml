@@ -64,6 +64,7 @@
           %th Url
           %th Like count
           %th Tracking since
+          %th Countries
       %tbody
         - @user_tags_statistic.each do |statistic|
           %tr.link-tr{"data-link" =>  tag_detaling_tag_path(statistic[:id]) }
@@ -76,6 +77,8 @@
                 = statistic[:count]
               %td
                 = statistic[:date]
+              %td
+                = statistic[:countries]
 - else
   .not-found-text.text-center
     Your have no analytics recorded yet

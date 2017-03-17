@@ -20,11 +20,14 @@ class SiteController < ApplicationController
           urls.each do |u|
             like_count = Like.where(tag_name: tag.tag_name, url: u).count
             like = Like.where(tag_name: tag.tag_name, url: u).order('created_at ASC').first
-            hash = {'tag_names': tag.tag_name, 'url': u, 'count': like_count, date: like.created_at.strftime("%d %b %Y"), id: like.id  }
+            countries = Like.select(:country).where(url: u, tag_name: tag.tag_name).pluck(:country).join(', ')
+            hash = {'tag_names': tag.tag_name, 'url': u, 'count': like_count, date: like.created_at.strftime("%d %b %Y"), id: like.id, countries: countries }
             @user_tags_statistic.push(hash)
           end
         end
       end
+
+      puts @user_tags_statistic.inspect
 
       if query
         search = Like.where(tag_name: query)
