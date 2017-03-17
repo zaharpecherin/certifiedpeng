@@ -1,17 +1,33 @@
-.home-page
-  %h1
-    CertifiedPeng subscription
-  %p
-    = image_tag('certified-peng.png', :class => "main-logo")
 
 .row
-  .col-md-4
-  .col-md-4
+  .col-md-2
+  .col-md-8
+    .home-page
+      %h1
+        CertifiedPeng subscription
+      %p
+        = image_tag('certified-peng.png', :class => "main-logo")
     .pay-box
       %p
-        You have an account but if you want to track the number of clicks your tag is receiving you need to have a Pro account (this costs £ 10.00 )
+        You now have a Certified Peng analytics account but if you want to track the number of clicks your tag is receiving you need to have a Pro account (this costs £10.00 a month for as long as you need to track a tag)
       %h3
-        Subscribe to Certified Peng Analytics now
+        %b Subscribe to Certified Peng Analytics now
+      %br
       = form_tag subscribers_path do
-        %script.stripe-button{data: {email: current_user.email, amount: '1000', currency: 'GBP', name: 'Monthly Plan', description: 'CertifiedPeng subscription', key: Rails.configuration.stripe[:publishable_key], locale: 'auto'}, src: 'https://checkout.stripe.com/checkout.js'}
-  .col-md-4
+        %script.stripe-button{data: {email: current_user.email, amount: '1000', currency: 'GBP', name: 'Monthly Plan', description: 'CertifiedPeng subscription', key: Rails.configuration.stripe[:publishable_key], locale: 'auto'},checkout:{label: 'TEXT'}, src: 'https://checkout.stripe.com/checkout.js'}
+      .home-page
+        = image_tag('pay-with-stripe.jpg', :class => "main-logo")
+      = link_to 'Certified Peng Dashboard Terms >', terms_path
+  .col-md-2
+
+%hr
+  .navbar
+    %span.text-link
+      Gorilla Theory Labs 2017
+    %span.text-link{style: 'float: right;'}
+      =link_to 'Contact Us', contact_us_path
+      =link_to 'Advertise', contact_us_path
+      =link_to 'About Us', about_us_path
+      =link_to 'Terms', terms_path
+
+

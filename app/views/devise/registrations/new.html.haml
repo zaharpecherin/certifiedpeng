@@ -21,11 +21,11 @@
     .form-group
       = f.label :password
       %br
-      = f.password_field :password, autocomplete: "off", placeholder: "******", class: 'form-control'
+      = f.password_field :password, autocomplete: "off", class: 'form-control'
     .form-group
       = f.label :password_confirmation
       %br
-      = f.password_field :password_confirmation, autocomplete: "off", placeholder: "******", class: 'form-control'
+      = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
     %input.btn.btn-primary{:value => "Sign up", :type => "submit", style: 'width: 100%;'}
   %br
   %p.text-center
@@ -33,12 +33,12 @@
     = link_to 'Login', new_user_session_path
 
 
-.footer
-  %hr
-  %span
-    Gorilla Theory Labs 2017
-  %span{style: 'float: right;'}
-    =link_to 'Contact Us', contact_us_path
-    =link_to 'Advertise', contact_us_path
-    =link_to 'About Us', about_us_path
-    =link_to 'Terms', terms_path
+%hr
+  .navbar
+    %span.text-link
+      Gorilla Theory Labs 2017
+    %span.text-link{style: 'float: right;'}
+      =link_to 'Contact Us', contact_us_path
+      =link_to 'Advertise', contact_us_path
+      =link_to 'About Us', about_us_path
+      =link_to 'Terms', terms_path

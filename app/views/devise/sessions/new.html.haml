@@ -16,7 +16,7 @@
       = f.email_field :email, autofocus: true, placeholder: "email@example.com", class: 'form-control'
     .form-group
       = f.label :password
-      = f.password_field :password, autocomplete: "off", placeholder: "******", class: 'form-control'
+      = f.password_field :password, autocomplete: "off",  class: 'form-control'
     - if devise_mapping.rememberable?
       .field
         = f.check_box :remember_me
@@ -30,12 +30,12 @@
     = link_to 'Forgot your password?', new_user_password_path
 
 
-.footer
-  %hr
-  %span
-    Gorilla Theory Labs 2017
-  %span{style: 'float: right;'}
-    =link_to 'Contact Us', contact_us_path
-    =link_to 'Advertise', contact_us_path
-    =link_to 'About Us', about_us_path
-    =link_to 'Terms', terms_path
+%hr
+  .navbar
+    %span.text-link
+      Gorilla Theory Labs 2017
+    %span.text-link{style: 'float: right;'}
+      =link_to 'Contact Us', contact_us_path
+      =link_to 'Advertise', contact_us_path
+      =link_to 'About Us', about_us_path
+      =link_to 'Terms', terms_path
