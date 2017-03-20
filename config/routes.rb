@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :subscribers, only: [:new, :create]
   post '/stripe/webhooks', to: "stripe#webhooks"
 
+  get '/merchandise', to: 'site#merchandise', as: :merchandise
   get '/dashboard', to: 'site#dashboard', as: :dashboard
   get '/like-button/:tag_name',to: 'site#tag_name'
   get '/like', to: 'site#like'

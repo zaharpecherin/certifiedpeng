@@ -51,6 +51,10 @@ class SiteController < ApplicationController
     @category = Category.find_by_name(params[:name])
   end
 
+  def merchandise
+    @category = Category.second
+  end
+
 
   def contact_us
   end

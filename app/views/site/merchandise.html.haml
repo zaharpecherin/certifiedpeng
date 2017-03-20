@@ -31,37 +31,28 @@
     .container
       .col-md-2
       .col-md-8
-        - if @category.name == 'fashion'
-          %h3.text-center
-            Certified Peng Merch
-          %br
-          %p The official Certified Peng T-Shirt (the Cee Pee Tee) is available for mass consumption by the peng and aspirational peng! Stand out from the crowd and make a statement this summer. Get yours today.
-          %p We have womens (medium and large) and mens (large and XL) at the moment. Don't read anything in to those sizes...that's all that's left.
-          %p
-            %span ALL stock introduction sale: &#163;25 (
-            %strike &#163;35
-            )
-          %p
-            %span Womens' Medium (
+        %h3.text-center
+          Certified Peng Merch
+        %br
+        %p The official Certified Peng T-Shirt (the Cee Pee Tee) is available for mass consumption by the peng and aspirational peng! Stand out from the crowd and make a statement this summer. Get yours today.
+        %p We have womens (medium and large) and mens (large and XL) at the moment. Don't read anything in to those sizes...that's all that's left.
+        %p
+          %span ALL stock introduction sale: &#163;25 (
+          %strike &#163;35
+          )
+        %p
+          %span Womens' Medium (
+          = link_to 'buy now >'
+          ) Womens' Large (
+          = link_to 'buy now >'
+          )
+        %p
+          %span
+            Mens' Large (
             = link_to 'buy now >'
-            ) Womens' Large (
+            ) Mens' Extra Large (
             = link_to 'buy now >'
             )
-          %p
-            %span
-              Mens' Large (
-              = link_to 'buy now >'
-              ) Mens' Extra Large (
-              = link_to 'buy now >'
-              )
-        - else
-          %h3.text-center
-            Title
-          %br
-          %p Check This Out some copy text and some more copy text Check This Out some copy text and some more copy text
-          %p Check This Out some copy text and some more copy text Check This Out some copy text and some more copy text
-          %p Check This Out some copy text and some more copy text Check This Out some copy text and some more copy text
-          %p Check This Out some copy text and some more copy text Check This Out some copy text and some more copy text
       .col-md-2
 
 .share-links
