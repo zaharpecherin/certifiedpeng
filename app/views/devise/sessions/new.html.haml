@@ -6,7 +6,7 @@
     = link_to root_path do
       = image_tag('certified-peng.png', :class => "main-logo")
 
-.form-box
+.form-box{style: 'margin-bottom: 7%;'}
   %h3.text-center Please login
   %br
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
@@ -29,13 +29,4 @@
   %p.text-center
     = link_to 'Forgot your password?', new_user_password_path
 
-
-%hr
-  .navbar
-    %span.text-link
-      Gorilla Theory Labs 2017
-    %span.text-link{style: 'float: right;'}
-      =link_to 'Contact Us', contact_us_path
-      =link_to 'Advertise', contact_us_path
-      =link_to 'About Us', about_us_path
-      =link_to 'Terms', terms_path
+= render :partial => 'shared/footer'

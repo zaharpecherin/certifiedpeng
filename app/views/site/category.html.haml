@@ -10,8 +10,6 @@
 
 
 .home-page
-  %h1
-    СertifiedPeng
   %p
     = link_to root_path do
       = image_tag('certified-peng.png', :class => "main-logo")
@@ -20,20 +18,48 @@
   .row
     .col-md-12.text-center
       %h2
-        = @category.name
-      = image_tag 'image-video.png', class: 'image-video-box'
+        = @category.name.capitalize
+      .category-image
+        - if @category.name == 'fashion'
+          = image_tag 'merch-girl.jpg', class: 'image-video-box'
+        - else
+          = image_tag 'image-video.png', class: 'image-video-box'
 
-.title-box
-  %h3.text-center
-    Title
-  %p
-    Check This Out some copy text and some more copy text Check This Out some copy text and some more copy text
-  %p
-    Check This Out some copy text and some more copy text Check This Out some copy text and some more copy text
-  %p
-    Check This Out some copy text and some more copy text Check This Out some copy text and some more copy text
-  %p
-    Check This Out some copy text and some more copy text Check This Out some copy text and some more copy text
+
+.category-desc
+  .row
+    .container
+      .col-md-2
+      .col-md-8
+        - if @category.name == 'fashion'
+          %h3.text-center
+            Certified Peng Merch
+          %br
+          %p The official Certified Peng T-Shirt (the Cee Pee Tee) is available for mass consumption by the peng and aspirational peng! Stand out from the crowd and make a statement this summer. Get yours today.
+          %p We have womens (medium and large) and mens (large and XL) at the moment. Don't read anything in to those sizes...that's all that's left.
+          %p ALL stock introduction sale: &#163;25 (strikethrough CSS of &#163;35)
+          %p
+            %span Womens' Medium (
+            = link_to 'buy now >'
+            ) Womens' Large (
+            = link_to 'buy now >'
+            )
+          %p
+            %span
+              Mens' Large (
+              = link_to 'buy now >'
+              ) Mens' Extra Large (
+              = link_to 'buy now >'
+              )
+        - else
+          %h3.text-center
+            Title
+          %br
+          %p Check This Out some copy text and some more copy text Check This Out some copy text and some more copy text
+          %p Check This Out some copy text and some more copy text Check This Out some copy text and some more copy text
+          %p Check This Out some copy text and some more copy text Check This Out some copy text and some more copy text
+          %p Check This Out some copy text and some more copy text Check This Out some copy text and some more copy text
+      .col-md-2
 
 .share-links
   .row
@@ -59,15 +85,7 @@
   %br
   = "</div>"
 
-%hr
-  .navbar
-    %span.text-link
-      Gorilla Theory Labs 2017
-    %span.text-link{style: 'float: right;'}
-      =link_to 'Contact Us', contact_us_path
-      =link_to 'Advertise', contact_us_path
-      =link_to 'About Us', about_us_path
-      =link_to 'Terms', terms_path
+= render :partial => 'shared/footer'
 
 
 :javascript

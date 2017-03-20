@@ -2,7 +2,7 @@ class SiteController < ApplicationController
   layout false, only: [:tag_name, :page_like_count, :like]
   protect_from_forgery except: [:tag_name, :page_like_count, :like]
   before_filter :set_access_control_headers, only: [:like, :tag_name, :page_like_count]
-  skip_before_filter :check_subscribtion, only: [:terms, :about_us, :contact_us, :index, :category]
+  skip_before_filter :check_subscribtion, except: :dashboard
 
   def index
     @categories = Category.all
@@ -12,6 +12,9 @@ class SiteController < ApplicationController
     if current_user
       @top_likes = Like.select('count(*) AS like_count, url, tag_name, created_at').group(:url, :tag_name, :created_at).order('like_count DESC').limit(10)
       query = params[:search] if params[:search]
+      @user_tags = current_user.tags.pluck(:tag_name).join(', ')
+      max_tags = 5
+      @not_added_tags = max_tags - current_user.tags.count
 
       if !current_user.tags.empty?
         @user_tags_statistic = []
@@ -27,8 +30,6 @@ class SiteController < ApplicationController
           end
         end
       end
-
-      puts @user_tags_statistic.inspect
 
       if query
         search = Like.where(tag_name: query)
@@ -62,7 +63,7 @@ class SiteController < ApplicationController
 
 
   def sent_email
-    recipient_emails = ['online@gorillatheory.com', 'henrychuks@hotmail.com']
+    recipient_emails = ['online@gorillatheory.com', 'admin@certifiedpeng.com', 'henrychuks@hotmail.com']
     if params["g-recaptcha-response"].present?
       name = params[:name]
       email = params[:email]
@@ -89,7 +90,12 @@ class SiteController < ApplicationController
 # #create like
   def like
 
-    likes = Like.where(url: params[:url], tag_name: params[:tag_name])
+
+    if params[:url].last == '/'
+      url = params[:url].chop
+    end
+
+    likes = Like.where(url: url, tag_name: params[:tag_name])
     like_page_by_ip_rel = likes.where(ip: request.ip)
 
     like_page_by_ip = like_page_by_ip_rel.first

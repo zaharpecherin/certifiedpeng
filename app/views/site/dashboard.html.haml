@@ -10,7 +10,7 @@
 
 .dashboard-box.text-center
   %h1
-    Dashboard
+    Your Dashboard
 
 .search-box-text.text-center
   Enter url or tag in search box:
@@ -80,8 +80,17 @@
               %td
                 = statistic[:countries]
 - else
-  .not-found-text.text-center
-    Your have no analytics recorded yet
+  .row
+    .col-md-2
+    .col-md-8.text-center
+      You entered the tag
+      %b '#{@user_tags}'
+      when you registered. You have #{@not_added_tags} more tags in your allowance
+      %br
+      Add another tag now:
+      = link_to 'click here >', tags_path
+    .col-md-2
+
 
 - if current_user.admin?
   .dashboard-box.text-center
@@ -110,12 +119,4 @@
                 %td
                   = top.created_at.strftime("%d %b %Y")
 
-%hr
-  .navbar
-    %span.text-link
-      Gorilla Theory Labs 2017
-    %span.text-link{style: 'float: right;'}
-      =link_to 'Contact Us', contact_us_path
-      =link_to 'Advertise', contact_us_path
-      =link_to 'About Us', about_us_path
-      =link_to 'Terms', terms_path
+= render :partial => 'shared/footer'

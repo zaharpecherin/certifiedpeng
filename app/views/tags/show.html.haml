@@ -18,12 +18,24 @@
   %br
   = "</div>"
 
-%hr
-  .navbar
-    %span.text-link
-      Gorilla Theory Labs 2017
-    %span.text-link{style: 'float: right;'}
-      =link_to 'Contact Us', contact_us_path
-      =link_to 'Advertise', contact_us_path
-      =link_to 'About Us', about_us_path
-      =link_to 'Terms', terms_path
+.my-tags-steps
+  .row
+    .col-md-3
+    .col-md-6
+      %b How To:
+      %br
+      %b Step 1:
+      If you are here, you have registered with a tag. The tag is in the code snippet.
+      %br
+      %b Step 2:
+      Copy and Paste the code to where you want the Certified Peng button to display on your webpage
+      %br
+      %b Step 3:
+      Track the number of clicks your button gets :>)
+      %br
+      %b NB:
+      You can have a Certifed Peng button without adding having a tracking account, but you will not be able to access the
+      = link_to 'tracking dashboard', dashboard_path
+    .col-md-3
+
+= render :partial => 'shared/footer'
