@@ -10,21 +10,26 @@
   %h2
     Your Purchases:
 -if current_user && !@purchases.empty?
-  .result
-    %table.table
-      %thead
-        %tr
-          %th
-          %th Item
-          %th Date of purchase
-      %tbody
-        - @purchases.each do |purchase|
-          %tr
-            %th{:scope => "row"}
-              %td
-                = 'T-Shirt : ' + purchase.item
-              %td
-                = purchase.created_at.strftime("%d %b %Y")
+  .row
+    .col-md-2
+    .col-md-8
+      .result
+        %table.table
+          %thead
+            %tr
+              %th
+              %th Item
+              %th Date of purchase
+          %tbody
+            - @purchases.each do |purchase|
+              %tr
+                %th{:scope => "row"}
+                  %td
+                    = 'T-Shirt : ' + purchase.item
+                  %td
+                    = purchase.created_at.strftime("%d %b %Y")
+    .col-md-2
+
 - else
   .not-found-text.text-center
     You have not made a purchase yet

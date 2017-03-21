@@ -15,7 +15,7 @@ charge =
 
     @handler = StripeCheckout.configure(
       key: stripe_pub_key
-      image: 'https://stripe.com/img/documentation/checkout/marketplace.png'
+      image: 'https://s23.postimg.org/xdexz2b8b/image.jpg'
       locale: 'auto'
       token: (token) ->
         options = {
