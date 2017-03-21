@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
     self.id == 1
   end
 
-  def is_subscriber?
+  def subscriber?
     self.subscriber && self.subscriber.stripe_id && (self.subscriber.end_date > Time.now)
   end
 

@@ -3,6 +3,9 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
     %title CertifiedPeng
+    %script{:src => "https://checkout.stripe.com/checkout.js"}
+    :javascript
+      var stripe_pub_key = "#{Rails.configuration.stripe[:publishable_key]}";
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'

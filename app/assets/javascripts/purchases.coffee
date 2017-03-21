@@ -39,5 +39,5 @@ charge =
       charge.handler.close()
       return
 
-$(document).ready () ->
+$(document).on 'turbolinks:load', ->
   charge.init() if typeof(StripeCheckout) is 'object'

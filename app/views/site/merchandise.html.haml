@@ -22,8 +22,6 @@
       .category-image
         = image_tag 'merch-girl.jpg', class: 'image-video-box'
 
-%script{:src => "https://checkout.stripe.com/checkout.js"}
-
 .category-desc
   .row
     .container
@@ -81,8 +79,6 @@
 
 
 :javascript
-  var stripe_pub_key = "#{Rails.configuration.stripe[:publishable_key]}";
-
   function share_facebook() {
     event.preventDefault();
     window.open("https://www.facebook.com/dialog/feed?app_id=1102341536470522&name=CertifiedPeng&display=popup&link=http://certifiedpeng.com&description=Share this amazing service!",'popup','height=500,width=500')
