@@ -40,4 +40,4 @@ charge =
       return
 
 $(document).ready () ->
-  charge.init() #if typeof(StripeCheckout) is typeof(Function)
+  charge.init() if typeof(StripeCheckout) is 'object'
