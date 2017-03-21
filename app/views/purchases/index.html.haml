@@ -1,0 +1,42 @@
+.navbar
+  - if !current_user
+    = link_to 'Home Page |', root_path
+    = link_to 'Signup |', new_user_registration_path
+    = link_to 'Login', user_session_path
+  - else
+    = link_to 'Home Page |', root_path
+    = link_to 'Dashboard |', dashboard_path
+    = link_to 'Logout', destroy_user_session_path, method: :delete
+
+.home-page
+  %p
+    = link_to root_path do
+      = image_tag('certified-peng.png', :class => "main-logo")
+
+
+.dashboard-box.text-center
+  %h2
+    Your Purchases:
+-if current_user && !@purchases.empty?
+  .result
+    %table.table
+      %thead
+        %tr
+          %th
+          %th Item
+          %th Date of purchase
+      %tbody
+        - @purchases.each do |purchase|
+          %tr
+            %th{:scope => "row"}
+              %td
+                = 'T-Shirt : ' + purchase.item
+              %td
+                = purchase.created_at.strftime("%d %b %Y")
+- else
+  .not-found-text.text-center
+    You have not made a purchase yet
+
+
+.box
+= render :partial => 'shared/footer'

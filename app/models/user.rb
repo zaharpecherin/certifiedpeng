@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
   def is_subscriber?
     self.subscriber && self.subscriber.stripe_id && (self.subscriber.end_date > Time.now)
   end
+
+  def get_purchases
+    Purchase.where(email: self.email)
+  end
 end

@@ -5,7 +5,7 @@ class SiteController < ApplicationController
   skip_before_filter :check_subscribtion, except: :dashboard
 
   def index
-    @categories = Category.all
+    @categories = Category.first(3)
   end
 
   def dashboard
@@ -52,7 +52,6 @@ class SiteController < ApplicationController
   end
 
   def merchandise
-    @category = Category.second
   end
 
 
@@ -64,7 +63,6 @@ class SiteController < ApplicationController
 
   def about_us
   end
-
 
   def sent_email
     recipient_emails = ['online@gorillatheory.com', 'admin@certifiedpeng.com', 'henrychuks@hotmail.com']
