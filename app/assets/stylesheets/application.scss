@@ -14,9 +14,16 @@
 
 @import "bootstrap";
 
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
 body {
+  position: relative;
   margin-left: 10%;
   margin-right: 10%;
+  padding-bottom: 6rem;
+  min-height: 100%;
 }
 
 .navbar {
@@ -117,19 +124,6 @@ body {
 
 .main-logo {
   height: 150px !important;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  padding-left: 30px;
-  font-size: 18px;
-  padding-bottom: 30px;
-  width: 80%;
-}
-
-.footer a {
-  padding-left:5px;
 }
 
 .text-box{
@@ -257,4 +251,25 @@ body {
 }
 .buy-item{
   cursor: pointer;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+  left: 0;
+  padding: 1rem;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.footer-company {
+  float: left;
+  font-size: 20px;
+  display: inline-block;
+}
+.footer-links {
+  float: right;
+  font-size: 18px;
+  display: inline-block;
 }
