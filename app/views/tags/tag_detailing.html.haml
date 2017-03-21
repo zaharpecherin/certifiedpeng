@@ -1,7 +1,4 @@
-.navbar
-  = link_to 'Home Page |', root_path
-  = link_to 'Dashboard |', dashboard_path
-  = link_to 'Logout', destroy_user_session_path, method: :delete
+= render partial: 'shared/navbar'
 
 .home-page
   %p
