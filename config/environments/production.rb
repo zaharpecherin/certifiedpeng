@@ -89,13 +89,12 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
 
-  config.action_mailer.default_url_options = { :host => 'certifiedpeng.com' }
+  config.action_mailer.default_url_options = { :host => 'www.certifiedpeng.com' }
   config.action_mailer.smtp_settings = {
-      :port           => 587,
-      :address        => 'smtp.sendgrid.net',
-      :user_name      => 'apikey',
-      :password       => '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',
-      # :password       => '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', # Frozen account
+      :port           => ENV['SENDGRID_PORT'],
+      :address        => ENV['SENDGRID_ADDRESS'],
+      :user_name      => ENV['SENDGRID_USERNAME'],
+      :password       => ENV['SENDGRID_PASSWORD'],
       :authentication => :plain,
   }
   config.action_mailer.delivery_method = :smtp

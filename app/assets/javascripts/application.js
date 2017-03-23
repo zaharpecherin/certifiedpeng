@@ -19,7 +19,7 @@ $(document).on('turbolinks:load', function(){
     $( ".stripe-button-el" ).prop( "disabled", true );
     setTimeout(function(){
         $( ".stripe-button-el" ).prop( "disabled", true );
-    }, 500);
+    }, 200);
 });
 
 $(document).on('click', '.link-tr', function(e) {
