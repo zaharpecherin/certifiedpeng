@@ -9,4 +9,9 @@ class NotificationMailer < ActionMailer::Base
     @reason = reason
       mail(to: recipient, subject: 'Notification from Contact Us page')
   end
+
+  def confirmation_email(email)
+    @email = email
+    mail(to: email, subject: 'Confirmation email')
+  end
 end

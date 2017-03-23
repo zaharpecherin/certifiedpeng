@@ -1,5 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-# before_action :configure_sign_up_params, only: [:create]
+before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -15,7 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
-        if params[:tag]
+        if params[:tag].present?
           tags = params[:tag].split(',')
           tags.each do |tag|
             Tag.create(user_id: resource.id, tag_name: tag)
@@ -23,6 +23,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         end
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
+        NotificationMailer.confirmation_email(resource.email).deliver
         respond_with resource, location: after_sign_up_path_for(resource)
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
@@ -64,9 +65,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params

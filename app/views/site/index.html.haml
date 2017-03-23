@@ -16,7 +16,12 @@
             - else
               = category.name.capitalize
           = link_to category_path(category.name) do
-            = image_tag 'home-page-image.png', class: 'image-box'
+            - if category.name == 'life'
+              = image_tag 'home_pengest-munch.jpg', class: 'image-box'
+            - elsif category.name == 'merchandise'
+              = image_tag 'home_merch-girl.jpg', class: 'image-box'
+            - else
+              = image_tag 'home_aurvana-anc.jpg', class: 'image-box'
           %h3{style: 'font-weight: bold;'}
             = link_to 'Check This Out >', category_path(category.name)
 
@@ -37,17 +42,33 @@
       %b How To:
       %br
       %b Step 1:
-      If you are here, you have registered with a tag. The tag is in the code snippet.
+      Copy and paste the code snippet above
       %br
       %b Step 2:
-      Copy and Paste the code to where you want the Certified Peng button to display on your webpage
+      Place the code where you want the Certified Peng button to appear on your web page
       %br
       %b Step 3:
-      Track the number of clicks your button gets :>)
+      Upload your web page and watch the clicks count increase
       %br
       %b NB:
-      You can have a Certifed Peng button without adding having a tracking account, but you will not be able to access the
-      = link_to 'tracking dashboard', dashboard_path
+      %span
+        You can have a Certifed Peng button without adding having a tracking account, but you will not be able to access the
+        = link_to 'tracking dashboard', new_user_session_path
+        where you can create specific tags for campaigns or specific content
+      %br
+      %b Advanced - for tag tracking
+      %br
+      %b Step 4:
+      %span
+        = link_to 'Register', new_user_registration_path
+        for a Certified Peng tracking account:
+        = link_to 'click here >', new_user_registration_path
+      %br
+      %b Step 5:
+      %span
+        = link_to 'Login', new_user_session_path
+        to your account and check your button tag analytics from your dashboard.
+        = link_to 'Click here >', dashboard_path
     .col-md-3
 %hr
 

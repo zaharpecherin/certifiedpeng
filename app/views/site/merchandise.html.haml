@@ -20,27 +20,34 @@
       .col-md-2
       .col-md-8
         %h3.text-center
-          Certified Peng Merch
+          Certified Peng Fashion
         %br
         %p The official Certified Peng T-Shirt (the Cee Pee Tee) is available for mass consumption by the peng and aspirational peng! Stand out from the crowd and make a statement this summer. Get yours today.
         %p We have womens (medium and large) and mens (large and XL) at the moment. Don't read anything in to those sizes...that's all that's left.
         %p
-          %span ALL stock introduction sale: &#163;25 (
-          %strike &#163;35
-          )
+          <b>ALL stock introduction SALE: <font color="#bf3939">£25</font> ( £35 )</b>
         %p
-          %span Womens' Medium (
+          %span
+            %b Womens' Medium
+          (
           %a{class: 'buy-item', data: {item: 'Womens Medium'}} buy now >
-          ) Womens' Large (
+          )
+          %b Womens' Large
+          (
           %a{class: 'buy-item',data: {item: 'Womens Large'}} buy now >
           )
         %p
           %span
-          Mens' Large (
+            %b Mens' Large
+          (
           %a{class: 'buy-item', data: {item: 'Mens Large'}} buy now >
-          ) Mens' Extra Large (
+          )
+          %b Mens' Extra Large
+          (
           %a{class: 'buy-item', data: {item: 'Mens Extra Large'}} buy now >
           )
+        .home-page
+          = image_tag('pay-with-stripe.jpg', :class => "main-logo")
       .col-md-2
 
 .share-links

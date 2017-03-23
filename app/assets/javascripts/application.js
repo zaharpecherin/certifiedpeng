@@ -15,8 +15,33 @@
 //= require turbolinks
 //= require_tree .
 
+$(document).on('turbolinks:load', function(){
+    $( ".stripe-button-el" ).prop( "disabled", true );
+    setTimeout(function(){
+        $( ".stripe-button-el" ).prop( "disabled", true );
+    }, 500);
+});
 
 $(document).on('click', '.link-tr', function(e) {
     var link = e.currentTarget.dataset.link;
     window.location = link;
 });
+
+$(document).on('change', '#terms_acepted',  function(e) {
+    if ($(this).is(':checked')) {
+        $( ".sign-up-button" ).prop( "disabled", false );
+    }
+    else{
+        $( ".sign-up-button" ).prop( "disabled", true );
+    }
+});
+
+$(document).on('change', '#terms-pay_acepted',  function(e) {
+    if ($(this).is(':checked')) {
+        $( ".stripe-button-el" ).prop( "disabled", false );
+    }
+    else{
+        $( ".stripe-button-el" ).prop( "disabled", true );
+    }
+});
+

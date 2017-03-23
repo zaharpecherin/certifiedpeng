@@ -14,9 +14,13 @@
       %br
       = f.email_field :email, autofocus: true, placeholder: "email@example.com", class: 'form-control'
     .form-group
-      = f.label :tag
+      = f.label :name
       %br
-      = f.text_field :tag, autocomplete: "off", :name => "tag", placeholder: 'Enter tags separated by commas', :value => params[:tag], class: 'form-control'
+      = f.text_field :name, autofocus: true, class: 'form-control', :required => true
+    .form-group
+      = f.label :tags
+      %br
+      = f.text_field :tags, autocomplete: "off", :name => "tags", placeholder: 'Enter tags separated by commas', :value => params[:tags], class: 'form-control'
     .form-group
       = f.label :password
       %br
@@ -25,8 +29,12 @@
       = f.label :password_confirmation
       %br
       = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
-    %input.btn.btn-primary{:value => "Sign up", :type => "submit", style: 'width: 100%;'}
+    %input.btn.btn-primary.sign-up-button{:value => "Sign up", :type => "submit", style: 'width: 100%;', :disabled => true}
   %br
+  .confirm-terms.text-center
+    = check_box('terms', 'acepted')
+    I agree with the Certified Peng Terms
+
   %p.text-center
     Already have an account?
     = link_to 'Login', new_user_session_path
