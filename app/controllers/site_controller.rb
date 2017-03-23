@@ -2,7 +2,7 @@ class SiteController < ApplicationController
   layout false, only: [:tag_name, :page_like_count, :like]
   protect_from_forgery except: [:tag_name, :page_like_count, :like]
   before_filter :set_access_control_headers, only: [:like, :tag_name, :page_like_count]
-  skip_before_filter :check_subscribtion, except: :dashboard
+  skip_before_action :check_subscribtion, except: :dashboard
 
   def index
     @categories = Category.first(3)

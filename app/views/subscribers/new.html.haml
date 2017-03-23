@@ -22,7 +22,7 @@
         = image_tag('pay-with-stripe.jpg', :class => "main-logo")
       = link_to 'Certified Peng Dashboard Terms >', terms_path
       .confirm-terms.text-center
-        = check_box('terms-pay', 'acepted')
+        = check_box('terms-pay', 'acepted', class: 'terms-confirm')
         I agree with the Certified Peng Terms
   .col-md-2
 

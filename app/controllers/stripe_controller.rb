@@ -1,6 +1,6 @@
 class StripeController < ApplicationController
   protect_from_forgery :except => :webhooks
-
+  skip_before_action :check_subscribtion
 
   def webhooks
     data_json = JSON.parse request.body.read

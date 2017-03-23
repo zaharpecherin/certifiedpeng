@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-  skip_before_filter :check_subscribtion
+  skip_before_action :check_subscribtion
 
   def index
     max_tags = 5

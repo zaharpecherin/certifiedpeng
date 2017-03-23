@@ -15,10 +15,12 @@ before_action :configure_sign_up_params, only: [:create]
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
-        if params[:tag].present?
-          tags = params[:tag].split(',')
-          tags.each do |tag|
-            Tag.create(user_id: resource.id, tag_name: tag)
+        if params[:tags].present?
+          tags = params[:tags].split(',')
+          unless Tag.exist?(tags)
+            tags.each do |tag|
+              Tag.create(user_id: resource.id, tag_name: tag)
+            end
           end
         end
         set_flash_message! :notice, :signed_up

@@ -1,4 +1,5 @@
 class ErrorsController < ApplicationController
+  skip_before_action :check_subscribtion
 
   def not_found
     render(:status => 404)
