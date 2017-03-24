@@ -1,7 +1,4 @@
 class SiteController < ApplicationController
-  layout false, only: [:tag_name, :page_like_count, :like]
-  protect_from_forgery except: [:tag_name, :page_like_count, :like]
-  before_filter :set_access_control_headers, only: [:like, :tag_name, :page_like_count]
   skip_before_action :check_subscribtion, except: :dashboard
 
   def index
@@ -51,19 +48,6 @@ class SiteController < ApplicationController
     @category = Category.find_by_name(params[:name])
   end
 
-  def merchandise
-  end
-
-
-  def contact_us
-  end
-
-  def terms
-  end
-
-  def about_us
-  end
-
   def sent_email
     recipient_emails = ['online@gorillatheory.com', 'admin@certifiedpeng.com', 'henrychuks@hotmail.com']
     if params["g-recaptcha-response"].present?
@@ -82,55 +66,19 @@ class SiteController < ApplicationController
       flash[:error] = "Do not ignore reCAPTCHA checkbox"
       redirect_to contact_us_path
     end
-
   end
 
-  def tag_name
-    @tag_name = params[:tag_name]
-  end
-
-# #create like
-  def like
-
-
-    if params[:url].last == '/'
-      url = params[:url].chop
-    end
-
-    likes = Like.where(url: url, tag_name: params[:tag_name])
-    like_page_by_ip_rel = likes.where(ip: request.ip)
-
-    like_page_by_ip = like_page_by_ip_rel.first
-    like_page = like_page_by_ip_rel.first_or_create
-
-    Like.delay.set_location(like_page)
-
-    ua = request.user_agent
-    mobile = 0
-
-    if ['Android', 'iPhone'].find {|s| ua.include?(s) }
-      mobile = 1
-    end
-
-    render json: { like_count: likes.count, liked: (like_page_by_ip ? 1 : 0), mobile: mobile}
-
+  def merchandise
   end
 
 
-# #get like count
-  def page_like_count
-    likes = Like.where(url: params[:url], tag_name: params[:tag_name])
-    like_page_by_ip = likes.where(ip: request.ip).first
-
-    render json:{ like_count: likes.count, liked: (like_page_by_ip ? 1 : 0) }
+  def contact_us
   end
 
+  def terms
+  end
 
-  private
-
-  def set_access_control_headers
-    headers["Content-Type"] = "text/javascript; charset=utf8"
-    headers['Access-Control-Allow-Origin'] = '*'
+  def about_us
   end
 
 end

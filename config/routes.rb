@@ -21,14 +21,15 @@ Rails.application.routes.draw do
 
   get '/category/merchandise', to: 'site#merchandise', as: :merchandise
   get '/dashboard', to: 'site#dashboard', as: :dashboard
-  get '/like-button/:tag_name',to: 'site#tag_name'
-  get '/like', to: 'site#like'
-  get '/page-like-count', to: 'site#page_like_count'
   get '/category/:name', to: 'site#category', as: :category
   get '/contact-us', to: 'site#contact_us', as: :contact_us
   post '/send-email', to: 'site#sent_email', as: :sent_email
   get '/terms', to: 'site#terms', as: :terms
   get '/about-us', to: 'site#about_us', as: :about_us
+
+  get '/like-button/:tag_name',to: 'peng_widget#tag_name'
+  get '/like', to: 'peng_widget#like'
+  get '/page-like-count', to: 'peng_widget#page_like_count'
 
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
