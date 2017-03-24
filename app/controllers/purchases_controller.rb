@@ -1,6 +1,4 @@
 class PurchasesController < ApplicationController
-  skip_before_action :check_subscribtion
-
   def index
     if current_user
       @purchases = current_user.get_purchases

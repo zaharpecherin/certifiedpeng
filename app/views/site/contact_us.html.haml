@@ -11,30 +11,24 @@
   .col-lg-4.col-md-6.col-xs-8
     = form_tag sent_email_path do
       .form-group
-        %label{:for => "InputName"} Name
-        %input#InputName.form-control{:placeholder => "Enter name", :name => "name", :type => "text", :required => true}
+        = label_tag :name
+        = text_field_tag 'options[name]', nil, class: 'form-control', placeholder: 'Enter name'
       .form-group
-        %label{:for => "InputEmail"} Email address
-        %input#InputEmail.form-control{"aria-describedby" => "emailHelp", :placeholder => "Enter email", :name => 'email', :type => "email", :required => true}
+        = label_tag 'Email address'
+        = email_field_tag 'options[email]', nil, class: 'form-control', 'aria-describedby': "emailHelp", placeholder: 'Enter email', required: true
       .form-group
-        %label{:for => "telophone"} Telephone
-        %input#telophone.form-control{:name => 'telephone', :type => "tel"}
+        = label_tag :telephone
+        = telephone_field_tag 'options[telephone]',nil, class: 'form-control'
       .form-group
-        %label{:for => "reason"} Reason for Contact
-        %select#reason.form-control{:name => 'reason'}
-          %option Advertising
-          %option Dashboard Support
-          %option Analytics
-          %option Peng Suggestion
+        = label_tag 'Reason for Contact'
+        = select_tag 'options[reason]', options_for_select(['Advertising', 'Dashboard Support', 'Analytics', 'Peng Suggestion']), class: 'form-control'
       .form-group
-        %label{:for => "message"} Message
-        %textarea#message.form-control{:rows => "3", :name => 'message', :required => true}
+        = label_tag :message
+        = text_area_tag 'options[message]',nil,  rows: '3', class: 'form-control', required: true
       .form-group
         .recaptcha
           = recaptcha_tags
-      %button.btn.btn-primary{:type => "submit", style: 'width: 100%'} Send
+      = submit_tag 'Send', class: 'btn btn-primary', style: 'width: 100%'
   .col-lg-4.col-md-3.col-xs-2
-
-
 
 = render :partial => 'shared/footer'

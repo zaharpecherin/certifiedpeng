@@ -9,12 +9,7 @@ Rails.application.routes.draw do
     get '/users', to: 'users/registrations#new'
   end
 
-  resources :tags, only: [:index, :show] do
-    member do
-      get '/tag-detaling/:id', action: 'tag_detailing', as: :tag_detaling
-    end
-  end
-
+  resources :tags, only: [:index, :show, :create]
   resources :purchases, only: [:create, :index]
   resources :subscribers, only: [:new, :create]
   post '/stripe/webhooks', to: "stripe#webhooks"
@@ -23,7 +18,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'site#dashboard', as: :dashboard
   get '/category/:name', to: 'site#category', as: :category
   get '/contact-us', to: 'site#contact_us', as: :contact_us
-  post '/send-email', to: 'site#sent_email', as: :sent_email
+  post '/send-email', to: 'site#send_email', as: :sent_email
   get '/terms', to: 'site#terms', as: :terms
   get '/about-us', to: 'site#about_us', as: :about_us
 

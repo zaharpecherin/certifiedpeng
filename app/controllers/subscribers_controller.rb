@@ -1,6 +1,5 @@
 class SubscribersController < ApplicationController
-  before_filter :authenticate_user!
-  skip_before_action :check_subscribtion, only: [:new, :create]
+  before_action :authenticate_user!
 
   def new
   end

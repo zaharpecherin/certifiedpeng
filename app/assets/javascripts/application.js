@@ -10,10 +10,10 @@ $(document).on('turbolinks:load', function(){
     }, 200);
 });
 
-$(document).on('click', '.link-tr', function(e) {
-    var link = e.currentTarget.dataset.link;
-    window.location = link;
-});
+// $(document).on('click', '.link-tr', function(e) {
+//     var link = e.currentTarget.dataset.link;
+//     window.location = link;
+// });
 
 $(document).on('change', '.terms-confirm',  function(e) {
     var button = $('.sign-up-button');

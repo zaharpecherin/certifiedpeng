@@ -16,13 +16,15 @@
       .list-group-item{:href => "#"}
         = link_to tag.tag_name, tag_path(tag)
 
-.search-box
-  .col-lg-6
-  %form{:action => "/tags", :method => "get"}
-    %input.form-control.search-input{style: 'height: 4%;', :name => "tag", placeholder: "Enter one tag each", type: "text"}
-    %button.btn.btn-default.search-button{ :type => "submit"} Add tag
-
-
+.row
+  .col-lg-4.col-md-3.col-xs-2
+  .col-lg-4.col-md-6.col-xs-8
+    = form_tag tags_path do
+      .input-group
+        = text_field_tag 'tag', nil, placeholder: "Enter one tag each", class: 'form-control'
+        %span.input-group-btn
+          = submit_tag 'Add tag',class: 'btn btn-default'
+  .col-lg-4.col-md-3.col-xs-2
 
 
 = render :partial => 'shared/footer'

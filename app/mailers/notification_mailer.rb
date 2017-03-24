@@ -1,12 +1,12 @@
 class NotificationMailer < ActionMailer::Base
   default from: 'CertifiedPeng <hello@certifiedpeng.com>'
 
-  def contact_us_notification(name, email, telephone=nil, reason, message, recipient)
-    @name = name
-    @email = email
-    @telephone = telephone
-    @message = message
-    @reason = reason
+  def contact_us_notification(options, recipient)
+    @name = options[:name]
+    @email = options[:email]
+    @telephone = options[:telephone]
+    @message = options[:message]
+    @reason = options[:reason]
       mail(to: recipient, subject: 'Notification from Contact Us page')
   end
 

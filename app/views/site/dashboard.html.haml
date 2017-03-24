@@ -10,13 +10,18 @@
     Your Dashboard
 
 .search-box-text.text-center
-  Enter url or tag in search box:
+  %p
+    Enter url or tag in search box:
 
-.search-box
-  .col-lg-6
-  %form{:action => "/dashboard", :method => "get"}
-    %input.form-control.search-input{style: 'height: 4%;', :name => "search", placeholder: "Search for...", type: "text"}
-    %button.btn.btn-default.search-button{ :type => "submit"} Search
+.row
+  .col-lg-4.col-md-3.col-xs-2
+  .col-lg-4.col-md-6.col-xs-8
+    = form_tag dashboard_path, method: :get do
+      .input-group
+        = text_field_tag 'search', nil, placeholder: "Search for...", class: 'form-control'
+        %span.input-group-btn
+          = submit_tag 'Search',class: 'btn btn-default'
+  .col-lg-4.col-md-3.col-xs-2
 
 - if !@result.nil?
   - if @result.empty?
@@ -64,7 +69,7 @@
           %th Countries
       %tbody
         - @user_tags_statistic.each do |statistic|
-          %tr.link-tr{"data-link" =>  tag_detaling_tag_path(statistic[:id]) }
+          %tr.link-tr
             %th{:scope => "row"}
               %td
                 = statistic[:tag_names]

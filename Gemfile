@@ -42,6 +42,7 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  gem 'rubocop', require: false
   gem 'web-console', '>= 3.3.0'
   gem 'letter_opener'
   gem 'listen', '~> 3.0.5'
@@ -53,9 +54,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-
-gem 'delayed_job_active_record'
-gem 'geocoder'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
 gem 'haml-rails'
@@ -63,6 +61,8 @@ gem 'pg'
 gem 'pundit'
 gem "recaptcha", require: "recaptcha/rails"
 gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
+gem 'geocoder'
+gem 'delayed_job_active_record'
 
 group :development do
   gem 'better_errors'
@@ -73,9 +73,9 @@ group :development do
   gem 'rails_apps_pages'
   gem 'rails_apps_testing'
   gem 'rails_layout'
-  gem 'rb-fchange', :require=>false
-  gem 'rb-fsevent', :require=>false
-  gem 'rb-inotify', :require=>false
+  gem 'rb-fchange', require: false
+  gem 'rb-fsevent', require: false
+  gem 'rb-inotify', require: false
   gem 'spring-commands-rspec'
 end
 

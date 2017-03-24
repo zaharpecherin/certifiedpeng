@@ -10,7 +10,6 @@ before_action :configure_sign_up_params, only: [:create]
   # POST /resource
   def create
     build_resource(sign_up_params)
-
     resource.save
     yield resource if block_given?
     if resource.persisted?
@@ -35,7 +34,7 @@ before_action :configure_sign_up_params, only: [:create]
     else
       clean_up_passwords resource
       set_minimum_password_length
-      flash[:error] = resource.errors.full_messages.join(", ")
+      flash[:error] = resource.errors.full_messages.join(', ')
       respond_with resource
     end
   end
