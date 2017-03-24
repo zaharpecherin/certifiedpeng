@@ -25,7 +25,7 @@ before_action :configure_sign_up_params, only: [:create]
         end
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
-        NotificationMailer.confirmation_email(resource.email).deliver
+        NotificationMailer.confirmation_email(resource.email, resource.name).deliver
         respond_with resource, location: after_sign_up_path_for(resource)
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"

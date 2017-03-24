@@ -10,8 +10,10 @@ class NotificationMailer < ActionMailer::Base
       mail(to: recipient, subject: 'Notification from Contact Us page')
   end
 
-  def confirmation_email(email)
+  def confirmation_email(email, name)
+    @from = 'Certified Peng Analytics <hello@certifiedpeng.com>'
     @email = email
-    mail(to: email, subject: 'Confirmation email')
+    @name = name
+    mail(from: @from, to: email, subject: 'Confirmation email')
   end
 end
