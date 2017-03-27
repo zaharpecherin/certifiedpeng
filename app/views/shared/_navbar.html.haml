@@ -5,6 +5,7 @@
     = link_to 'Login', user_session_path
   - else
     = link_to 'Dashboard |', dashboard_path
+    = link_to 'Merchandise |', merchandise_path
     = link_to 'My Tags |', tags_path
     = link_to 'My Purchases |', purchases_path
     = link_to 'Logout', destroy_user_session_path, method: :delete

@@ -13,7 +13,7 @@ class TagsController < ApplicationController
     elsif (tag.include? ' ') || (tag.include? ',')
       flash[:error] = 'Tag must not contain spaces or commas'
     elsif !Tag.unique?(tag)
-      flash[:error] = 'Tag must be unique'
+      flash[:error] = 'Tag you entered already exists'
     else
       Tag.create(tag_name: tag, user_id: current_user.id)
     end

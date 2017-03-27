@@ -11,14 +11,11 @@
       - @categories.each do |category|
         .col-md-4.text-center
           %h2{style: 'font-weight: bold;'}
-            - if category.name == 'merchandise'
-              Fashion
-            - else
-              = category.name.capitalize
+            = category.name.capitalize
           = link_to category_path(category.name) do
             - if category.name == 'life'
               = image_tag 'home_pengest-munch.jpg', class: 'image-box'
-            - elsif category.name == 'merchandise'
+            - elsif category.name == 'fashion'
               = image_tag 'home_merch-girl.jpg', class: 'image-box'
             - else
               = image_tag 'home_aurvana-anc.jpg', class: 'image-box'
