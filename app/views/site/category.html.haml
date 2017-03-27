@@ -1,10 +1,5 @@
 = render partial: 'shared/navbar'
-
-
-.home-page
-  %p
-    = link_to root_path do
-      = image_tag('certified-peng.png', :class => "main-logo")
+= render partial: 'shared/main_logo'
 
 .image-panel
   .row
@@ -27,25 +22,41 @@
           %h3.text-center
             Certified Peng Merch
           %br
-          %p The official Certified Peng T-Shirt (the Cee Pee Tee) is available for mass consumption by the peng and aspirational peng! Stand out from the crowd and make a statement this summer. Get yours today.
-          %p We have womens (medium and large) and mens (large and XL) at the moment. Don't read anything in to those sizes...that's all that's left.
           %p
-            %span ALL stock introduction sale: &#163;25 (
-            %strike &#163;35
+            <b>ALL stock introduction SALE: <font color="#bf3939 ">&#163;25 (inc. VAT)</font></b> ( <strike>&#163;35</strike> ) <b>NB: Postage: &#163;3.75 (Total Price: <font color="#bf3939 ">&#163;28.75</font>)</b>
+          %p
+            The official, exclusive design Certified Peng T-Shirt (the Cee Pee Tee) is available for mass consumption by the peng and aspirational peng! White, 100% cotton, twin-needle sleeves. Stand out from the crowd and make a statement this summer. <b>Get yours today.</b>
+          %p
+            We have womens (medium and large) and mens (large and XL) at the moment. Don't read anything in to those sizes...that's all that's left.
+          %p
+            %b
+              Washing instructions:
+          %p
+            Machine wash warm (inside out), with whites wash. Tumble dry medium.
+          %br
+
+          %p
+            %span
+              %b Womens' Medium
+            (
+            %a{class: 'buy-item', data: {item: 'Womens Medium'}} buy now >
             )
-          %p
-            %span Womens' Medium (
-            = link_to 'buy now >'
-            ) Womens' Large (
-            = link_to 'buy now >'
+            %b Womens' Large
+            (
+            %a{class: 'buy-item',data: {item: 'Womens Large'}} buy now >
             )
           %p
             %span
-              Mens' Large (
-              = link_to 'buy now >'
-              ) Mens' Extra Large (
-              = link_to 'buy now >'
-              )
+              %b Mens' Large
+            (
+            %a{class: 'buy-item', data: {item: 'Mens Large'}} buy now >
+            )
+            %b Mens' Extra Large
+            (
+            %a{class: 'buy-item', data: {item: 'Mens Extra Large'}} buy now >
+            )
+          .home-page
+            = image_tag('pay-with-stripe.jpg', :class => "main-logo")
         - else
           %h3.text-center
             Title

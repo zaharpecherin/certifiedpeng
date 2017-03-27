@@ -3,7 +3,7 @@
 .home-page
   %p
     = link_to root_path do
-      = image_tag('certified-peng.png', :class => "main-logo")
+      = image_tag('certifiedpeng-large.png', :class => "main-logo")
 
 
 .dashboard-box.text-center
@@ -29,10 +29,21 @@
                   %td
                     = purchase.created_at.strftime("%d %b %Y")
     .col-md-2
-
-- else
+- elsif current_user && @purchases.empty?
   .not-found-text.text-center
     You have not made a purchase yet
+- else
+  .row
+    .col-lg-3.col-md-2
+    .col-lg-6.col-md-8
+      .success-message
+        %p
+          Congratulations on buying your Certifed Peng
+          %b Cee Pee Tee Shirt!
+        %p Now that you have your certified uniform, join the club and start tracking content and seeing what's trending as Peng around the Internet. If you are a content owner, add the Certified Peng like button to your content TODAY
+        %p
+          =link_to 'Register here >', new_user_registration_path
+    .col-lg-3.col-md-2
 
 
 = render :partial => 'shared/footer'

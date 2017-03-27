@@ -1,9 +1,5 @@
 = render partial: 'shared/navbar'
-
-.home-page
-  %p
-    = link_to root_path do
-      = image_tag('certified-peng.png', :class => "main-logo")
+= render partial: 'shared/main_logo'
 
 .form-box{style: 'margin-bottom: 7%;'}
   %h3.text-center Please login
