@@ -2,14 +2,15 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
-    %title CertifiedPeng
-    %script{:src => "https://checkout.stripe.com/checkout.js"}
-    :javascript
-      var stripe_pub_key = "#{Rails.configuration.stripe[:publishable_key]}";
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=0.8'}
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+    %title CertifiedPeng
+    %script{:src => "https://checkout.stripe.com/checkout.js"}
+    :javascript
+      var stripe_pub_key = "#{Rails.configuration.stripe[:publishable_key]}";
   %body
     = render partial: "shared/flash_messages", flash: flash
     = yield

@@ -50,7 +50,7 @@
           %a{class: 'buy-item', data: {item: 'Mens Extra Large'}} buy now >
           )
         .home-page
-          = image_tag('pay-with-stripe.jpg', :class => "main-logo")
+          = image_tag('pay-with-stripe.jpg', :class => "stripe-logo")
       .col-md-2
 
 .share-links
@@ -70,12 +70,16 @@
 
 .main-text
   %h3 Get the Certified Peng button for your content:
-.script-box
-  = "<div class='sinatra-like-button'>"
-  %br
-  = "<script src='https://www.certifiedpeng.herokuapp.com/like-button/TAG-NAME' type='text/javascript'></script>"
-  %br
-  = '</div>'
+.row
+  .col-lg-3.col-md-3.col-xs-0
+  .col-lg-6.col-md-6.col-xs-12
+    .script-box
+      = "<div class='sinatra-like-button'>"
+      %br
+      = "<script src='https://www.certifiedpeng.com/like-button/TAG-NAME' type='text/javascript'></script>"
+      %br
+      = '</div>'
+  .col-lg-3.col-md-3.col-xs-0
 
 = render :partial => 'shared/footer'
 

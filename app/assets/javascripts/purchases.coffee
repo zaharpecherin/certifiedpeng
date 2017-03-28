@@ -7,7 +7,7 @@ charge =
     @handler_option = {
       name: 'Buy T-Shirt'
       description: ''
-      amount: 2500
+      amount: 2875
       currency: 'GBP'
       billingAddress: true
       shippingAddress: true
@@ -25,7 +25,6 @@ charge =
           description: charge.handler_option.description
         }
         $.post '/purchases', options, (data) ->
-        # location href
     )
 
 

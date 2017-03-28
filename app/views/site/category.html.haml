@@ -10,7 +10,7 @@
         - if @category.name == 'fashion'
           = image_tag 'merch-girl.jpg', class: 'image-video-box'
         - else
-          = image_tag 'image-video.png', class: 'image-video-box'
+          = image_tag 'image-video.png', class: 'image-video-box', style: 'border: 1px solid;'
 
 
 .category-desc
@@ -84,12 +84,17 @@
 
 .main-text
   %h3 Get the Certified Peng button for your content:
-.script-box
-  = "<div class='sinatra-like-button'>"
-  %br
-  = "<script src='https://www.certifiedpeng.herokuapp.com/like-button/TAG-NAME' type='text/javascript'></script>"
-  %br
-  = '</div>'
+.row
+  .col-lg-3.col-md-3.col-xs-0
+  .col-lg-6.col-md-6.col-xs-12
+    .script-box
+      = "<div class='sinatra-like-button'>"
+      %br
+      = "<script src='https://www.certifiedpeng.com/like-button/TAG-NAME' type='text/javascript'></script>"
+      %br
+      = '</div>'
+  .col-lg-3.col-md-3.col-xs-0
+%br
 
 = render :partial => 'shared/footer'
 

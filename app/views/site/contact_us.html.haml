@@ -2,10 +2,11 @@
 = render partial: 'shared/main_logo'
 
 %h1.text-center Contact Us
+
 .row
-  .col-lg-4.col-md-3.col-xs-2
-  .col-lg-4.col-md-6.col-xs-8
-    = form_tag sent_email_path do
+  .col-lg-4.col-md-3.col-xs-0
+  .col-lg-4.col-md-6.col-xs-12
+    = form_tag sent_email_path, class: 'form-box' do
       .form-group
         = label_tag :name
         = text_field_tag 'options[name]', nil, class: 'form-control', placeholder: 'Enter name'
@@ -25,6 +26,6 @@
         .recaptcha
           = recaptcha_tags
       = submit_tag 'Send', class: 'btn btn-primary', style: 'width: 100%'
-  .col-lg-4.col-md-3.col-xs-2
+  .col-lg-4.col-md-3.col-xs-0
 
 = render :partial => 'shared/footer'

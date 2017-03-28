@@ -9,7 +9,7 @@
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
- *
+ *= require media
  */
 
 @import "bootstrap";
@@ -52,15 +52,13 @@ body {
 }
 
 .script-box{
-  margin-bottom: 3%;
+  margin-bottom: 50px;
   margin-top: 20px;
   background: #f9f9f9;
   padding: 30px;
   color: #646464;
   border: 1px solid #dcdcdc;
   border-radius: 5px;
-  margin-left: 20%;
-  margin-right: 20%;
 }
 
 .alert-danger {
@@ -120,7 +118,9 @@ body {
 }
 
 .main-logo {
-  height: 150px !important;
+  max-width: 100%;
+  height: auto;
+  width: auto\9; /* ie8 */
 }
 
 .text-box{
@@ -138,8 +138,9 @@ body {
 }
 
 .image-video-box {
-  width: 500px;
-  height: 500px;
+  max-width: 100%;
+  height: auto;
+  width: auto\9;
 }
 
 .title-box {
@@ -165,9 +166,7 @@ body {
 }
 
 .form-box {
-  margin-top: 5%;
-  margin-left: 40%;
-  margin-right: 40%;
+  margin-bottom: 70px;
 }
 
 .search-button {
@@ -181,12 +180,11 @@ body {
 .tags-box {
   margin-top: 20px;
   padding: 30px;
-  margin-left: 18%;
-  margin-right: 18%
 }
 
 .pay-box {
   margin-top: 10%;
+  margin-bottom: 10%;
   text-align: center;
   border: 1px solid #dcdcdc;
   border-radius: 15px;
@@ -214,8 +212,8 @@ body {
 }
 
 .result {
-  margin-bottom: 5%;
-  margin-top: 5%;
+  margin-bottom: 50px;
+  margin-top: 30px;
 }
 
 .stripe-button-el span{
@@ -239,7 +237,7 @@ body {
 }
 
 .my-tags-steps {
-  margin-bottom: 5%;
+  margin-bottom: 60px;
   margin-top: 5%;
   font-size: 15px;
 }
@@ -281,4 +279,18 @@ body {
   border-radius: 15px;
   padding: 10%;
   font-size: 16px;
+}
+
+.stripe-logo {
+  max-width: 100%;
+  height: auto;
+  width: auto\9; /* ie8 */
+}
+
+.new-tag{
+  margin-bottom: 70px;
+}
+
+.login-signup{
+  margin-bottom: 70px;
 }

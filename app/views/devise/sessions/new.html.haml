@@ -1,26 +1,32 @@
 = render partial: 'shared/navbar'
 = render partial: 'shared/main_logo'
 
-.form-box{style: 'margin-bottom: 7%;'}
-  %h3.text-center Please login
-  %br
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    .form-group
-      = f.label 'Email address'
-      %br
-      = f.email_field :email, autofocus: true, placeholder: "email@example.com", class: 'form-control'
-    .form-group
-      = f.label :password
-      = f.password_field :password, autocomplete: "off",  class: 'form-control'
-    - if devise_mapping.rememberable?
-      .field
-        = f.check_box :remember_me
-        = f.label :remember_me
-    %input.btn.btn-primary{:value => "Login", :type => "submit", style: 'width: 100%;'}
-  %br
-  %p.text-center
-    Don’t have an account?
-    = link_to 'Signup', new_user_registration_path
+
+%h3.text-center Please login
+%br
+.row
+  .col-lg-4.col-md-3.col-xs-0
+  .col-lg-4.col-md-6.col-xs-12
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .form-group
+        = f.label 'Email address'
+        %br
+        = f.email_field :email, autofocus: true, placeholder: "email@example.com", class: 'form-control'
+      .form-group
+        = f.label :password
+        = f.password_field :password, autocomplete: "off",  class: 'form-control'
+      - if devise_mapping.rememberable?
+        .field
+          = f.check_box :remember_me
+          = f.label :remember_me
+      %input.btn.btn-primary{:value => "Login", :type => "submit", style: 'width: 100%;'}
+    %br
+    %p.text-center
+      Don’t have an account?
+      = link_to 'Signup', new_user_registration_path
+  .col-lg-4.col-md-3.col-xs-0
+
+.login-signup
   %p.text-center
     = link_to 'Forgot your password?', new_user_password_path
 

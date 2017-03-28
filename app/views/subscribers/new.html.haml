@@ -19,12 +19,13 @@
       = form_tag subscribers_path do
         %script.stripe-button{data: {email: current_user.email, amount: '1000', currency: 'GBP', name: 'Monthly Plan', description: 'CertifiedPeng subscription', key: Rails.configuration.stripe[:publishable_key], locale: 'auto'},checkout:{label: 'TEXT'}, src: 'https://checkout.stripe.com/checkout.js'}
       .home-page
-        = image_tag('pay-with-stripe.jpg', :class => "main-logo")
+        = image_tag('pay-with-stripe.jpg', :class => "stripe-logo")
       = link_to 'Certified Peng Dashboard Terms >', terms_path
       .confirm-terms.text-center
         = check_box('terms-pay', 'acepted', class: 'terms-confirm')
         I agree with the Certified Peng Terms
   .col-md-2
+%br
 
 = render :partial => 'shared/footer'
 
