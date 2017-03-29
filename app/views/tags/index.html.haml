@@ -2,11 +2,23 @@
 = render partial: 'shared/main_logo'
 
 
-.dashboard-box.text-center
-  %h1
-    Your Tags
-  %p
-    You can track 5 Tags per account. You can still add #{@not_added_tags} tags.
+
+%h1.text-center
+  Your Tags
+%p.text-center
+  You can track 5 Tags per account. You can still add #{@not_added_tags} tags.
+
+.new-tag
+  .row
+    .col-lg-4.col-md-3.col-xs-0
+    .col-lg-4.col-md-6.col-xs-12
+      = form_tag tags_path do
+        .input-group
+          = text_field_tag 'tag', nil, placeholder: "Enter one tag each", class: 'form-control'
+          %span.input-group-btn
+            = submit_tag 'Add tag',class: 'btn btn-default'
+    .col-lg-4.col-md-3.col-xs-0
+
 .row
   .col-lg-3.col-md-2.col-xs-0
   .col-lg-6.col-md-8.col-xs-12
@@ -18,16 +30,7 @@
   .col-lg-3.col-md-2.col-xs-0
 
 
-.new-tag
-  .row
-    .col-lg-4.col-md-3.col-xs-2
-    .col-lg-4.col-md-6.col-xs-8
-      = form_tag tags_path do
-        .input-group
-          = text_field_tag 'tag', nil, placeholder: "Enter one tag each", class: 'form-control'
-          %span.input-group-btn
-            = submit_tag 'Add tag',class: 'btn btn-default'
-    .col-lg-4.col-md-3.col-xs-2
+
 
 
 = render :partial => 'shared/footer'

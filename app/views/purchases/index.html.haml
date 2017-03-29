@@ -30,7 +30,7 @@
                     = purchase.created_at.strftime("%d %b %Y")
     .col-md-2
 - elsif current_user && @purchases.empty?
-  .not-found-text.text-center
+  %p.text-center
     You have not made a purchase yet
 - else
   .row

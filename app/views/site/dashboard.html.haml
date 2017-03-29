@@ -78,16 +78,17 @@
               %td
                 = statistic[:countries]
 - else
-  .row
-    .col-md-2
-    .col-md-8.text-center
-      You entered the tag
-      %b '#{@user_tags}'
-      when you registered. You have #{@not_added_tags} more tags in your allowance
-      %br
-      Add another tag now:
-      = link_to 'click here >', tags_path
-    .col-md-2
+  .result
+    .row
+      .col-md-2
+      .col-md-8.text-center
+        You entered the tag
+        %b '#{@user_tags}'
+        when you registered. You have #{@not_added_tags} more tags in your allowance
+        %br
+        Add another tag now:
+        = link_to 'click here >', tags_path
+      .col-md-2
 
 
 - if current_user.admin?
