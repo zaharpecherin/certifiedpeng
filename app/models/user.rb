@@ -20,19 +20,8 @@ class User < ActiveRecord::Base
   end
 
   def get_statistic
-    statistic = []
-    self.tags.each do |tag|
-      likes = Like.where(tag_name: tag.tag_name)
-      urls =  likes.select(:url).group(:url).pluck(:url)
-      urls.each do |u|
-        like_count = Like.where(tag_name: tag.tag_name, url: u).count
-        like = Like.where(tag_name: tag.tag_name, url: u).order('created_at ASC').first
-        countries = Like.select(:country).where(url: u, tag_name: tag.tag_name).pluck(:country).join(', ')
-        hash = {'tag_names': tag.tag_name, 'url': u, 'count': like_count, date: like.created_at.strftime("%d %b %Y"), id: like.id, countries: countries }
-        statistic.push(hash)
-      end
-    end
-    statistic
+    tags =  self.tags.select(:tag_name).to_sql
+    Like.where("tag_name IN (#{tags})").select("COUNT(*) AS like_count, url, tag_name,  MIN(created_at) AS created_at, string_agg(country, ', ') AS countries").group(:url, :tag_name).order('like_count DESC')
   end
 
   def limits_of_tags?

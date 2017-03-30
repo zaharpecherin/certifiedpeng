@@ -12,7 +12,7 @@ class Like < ActiveRecord::Base
   end
 
   def self.get_top_likes
-    Like.select('count(*) AS like_count, url, tag_name, created_at').group(:url, :tag_name, :created_at).order('like_count DESC').limit(10)
+    select('COUNT(*) AS like_count, url, tag_name, MIN(created_at) AS created_at').group(:url, :tag_name).order('like_count DESC').limit(10)
   end
 
   def self.search_request(query)

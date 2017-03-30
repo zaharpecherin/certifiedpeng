@@ -68,15 +68,15 @@
           %tr.link-tr
             %th{:scope => "row"}
               %td
-                = statistic[:tag_names]
+                = statistic.tag_name
               %td
-                = statistic[:url]
+                = statistic.url
               %td
-                = statistic[:count]
+                = statistic.like_count
               %td
-                = statistic[:date]
+                = statistic.created_at.strftime("%d %b %Y")
               %td
-                = statistic[:countries]
+                = statistic.countries
 - else
   .result
     .row
