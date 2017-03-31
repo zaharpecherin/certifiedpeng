@@ -4,7 +4,6 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', function(){
-    $( ".stripe-button-el" ).prop( "disabled", true );
     setTimeout(function(){
         $( ".stripe-button-el" ).prop( "disabled", true );
     }, 500);

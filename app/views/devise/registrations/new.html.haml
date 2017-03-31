@@ -4,8 +4,8 @@
 %h3.text-center Please sign up
 %br
 .row
-  .col-lg-4.col-md-3.col-xs-0
-  .col-lg-4.col-md-6.col-xs-12
+  .col-lg-4.col-md-3.col-xs-1
+  .col-lg-4.col-md-6.col-xs-10
     = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
       .form-group
         = f.label 'Email address'
@@ -32,7 +32,7 @@
     .confirm-terms.text-center
       = check_box('terms-signup', 'acepted', class: 'terms-confirm')
       I agree with the Certified Peng Terms
-  .col-lg-4.col-md-3.col-xs-0
+  .col-lg-4.col-md-3.col-xs-1
 
 .login-signup
   %p.text-center
