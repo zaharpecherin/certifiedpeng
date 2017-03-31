@@ -55,7 +55,7 @@
             (
             %a{class: 'buy-item', data: {item: 'Mens Extra Large'}} buy now >
             )
-          .home-page
+          .stripe-box
             = image_tag('pay-with-stripe.jpg', :class => "main-logo")
         - else
           %h3.text-center
@@ -96,7 +96,6 @@
   .col-lg-3.col-md-3.col-xs-0
 %br
 
-= render :partial => 'shared/footer'
 
 
 :javascript
