@@ -12,6 +12,8 @@
     :javascript
       var stripe_pub_key = "#{Rails.configuration.stripe[:publishable_key]}";
   %body
-    = render partial: "shared/flash_messages", flash: flash
+    = render partial: 'shared/flash_messages', flash: flash
+    = render partial: 'shared/navbar'
+    = render partial: 'shared/main_logo'
     = yield
     = render partial: 'shared/footer'
