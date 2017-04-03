@@ -7,21 +7,29 @@ class TagsController < ApplicationController
   end
 
   def create
-    tag = params[:tag]
-    if current_user.limits_of_tags?
-      flash[:error] = 'You cant add more then 5 tags'
-    elsif (tag.include? ' ') || (tag.include? ',')
-      flash[:error] = 'Tag must not contain spaces or commas'
-    elsif !Tag.unique?(tag)
-      flash[:error] = 'Tag you entered already exists'
+    error = get_error(params[:tag])
+    if error
+      flash[:error] = error
     else
-      Tag.create(tag_name: tag, user_id: current_user.id)
+      Tag.create(tag_name: params[:tag], user_id: current_user.id)
     end
     redirect_to tags_path
   end
 
   def show
     @tag = Tag.find_by_id(params[:id])
+  end
+
+  private
+
+  def get_error(tag)
+    if current_user.limits_of_tags?
+      'You cant add more then 5 tags'
+    elsif tag.include?(' ') || tag.include?(',')
+      'Tag must not contain spaces or commas'
+    elsif Tag.exists?(tag_name: tag)
+      'Tag you entered already exists'
+    end
   end
 end
 

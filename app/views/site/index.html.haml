@@ -1,5 +1,4 @@
-
-.image-panel
+.image-container
   .container
     .row
       - @categories.each do |category|
@@ -8,85 +7,90 @@
             = category.name.capitalize
           = link_to category_path(category.name) do
             - if category.name == 'life'
-              = image_tag 'home_pengest-munch.jpg', class: 'image-box'
+              = image_tag 'home_pengest-munch.jpg', class: 'image-box-small'
             - elsif category.name == 'fashion'
-              = image_tag 'home_merch-girl.jpg', class: 'image-box'
+              = image_tag 'home_merch-girl.jpg', class: 'image-box-small'
             - else
-              = image_tag 'home_aurvana-anc.jpg', class: 'image-box'
+              = image_tag 'home_aurvana-anc.jpg', class: 'image-box-small'
           %h3{style: 'font-weight: bold;'}
             = link_to 'Check This Out >', category_path(category.name)
+    %hr
 
+.script-container
+  .container
+    .row
+      .col-md-2
+      .col-md-8
+        .panel-group
+          .panel.panel-default
+            .panel-body
+              %h4.text-center
+                Get the Certified Peng button for your content:
+            .panel-heading{style: 'color: #615e5e; font-size: 15px;'}
+              = "<div class='sinatra-like-button'>"
+              %br
+              = "  <script src='https://www.certifiedpeng.com/like-button/TAG-NAME' type='text/javascript'></script>"
+              %br
+              = '</div>'
+      .col-md-2
+    %hr
 
-.main-text
-  %h3 Get the Certified Peng button for your content:
-.row
-  .col-lg-3.col-md-3.col-xs-0
-  .col-lg-6.col-md-6.col-xs-12
-    .script-box
-      = "<div class='sinatra-like-button'>"
-      %br
-      = "<script src='https://www.certifiedpeng.com/like-button/TAG-NAME' type='text/javascript'></script>"
-      %br
-      = '</div>'
-  .col-lg-3.col-md-3.col-xs-0
+.text-container
+  .container
+    .row
+      .col-md-12
+        .tag-content
+          %p
+            %p
+              %b How To:
+            %b Step 1:
+            Copy and paste the code snippet above
+            %br
+            %b Step 2:
+            Place the code where you want the Certified Peng button to appear on your web page
+            %br
+            %b Step 3:
+            Upload your web page and watch the clicks count increase
+            %br
+            %b NB:
+            %span
+              You can have a Certifed Peng button without adding having a tracking account, but you will not be able to access the
+              = link_to 'tracking dashboard', new_user_session_path
+              where you can create specific tags for campaigns or specific content
+            %br
+            %b Advanced - for tag tracking
+            %br
+            %b Step 4:
+            %span
+              = link_to 'Register', new_user_registration_path
+              for a Certified Peng tracking account:
+              = link_to 'click here >', new_user_registration_path
+            %br
+            %b Step 5:
+            %span
+              = link_to 'Login', new_user_session_path
+              to your account and check your button tag analytics from your dashboard.
+              = link_to 'Click here >', dashboard_path
+    %hr
 
-.my-tags-steps
-  .row
-    .col-md-3
-    .col-md-6
-      %p
-        %b How To:
-        %br
-        %b Step 1:
-        Copy and paste the code snippet above
-        %br
-        %b Step 2:
-        Place the code where you want the Certified Peng button to appear on your web page
-        %br
-        %b Step 3:
-        Upload your web page and watch the clicks count increase
-        %br
-        %b NB:
-        %span
-          You can have a Certifed Peng button without adding having a tracking account, but you will not be able to access the
-          = link_to 'tracking dashboard', new_user_session_path
-          where you can create specific tags for campaigns or specific content
-        %br
-        %b Advanced - for tag tracking
-        %br
-        %b Step 4:
-        %span
-          = link_to 'Register', new_user_registration_path
-          for a Certified Peng tracking account:
-          = link_to 'click here >', new_user_registration_path
-        %br
-        %b Step 5:
-        %span
-          = link_to 'Login', new_user_session_path
-          to your account and check your button tag analytics from your dashboard.
-          = link_to 'Click here >', dashboard_path
-    .col-md-3
-%hr
-
-.my-tags-steps
-  .row
-    .col-md-3
-    .col-md-6
-      %p
-        <b>P</b>henomenal<br />
-        <b>E</b>xcellent<br />
-        <b>N</b>otable<br />
-        <b>G</b>orgeous
-        <br /><br />
-        Certified Peng is a new popularity and aesthetic metric. Certified Peng pinpoints quality content (news, images, video, products).
-        %br
-        %br
-        Use the Peng button to find out what is trending and what is popular in terms of news and products and snapshots of life. Engage with Generation Z millennials and older (young at heart, with their finger on the pulse) audiences.
-        %br
-        %br
-        Use the Certified Peng like button to drive interest in your content, products, or vanity snapshots. We have a dashboard that allows a closer look at who is liking your content and where. Join the Certified Peng network today.
-        %br
-        %br
-    .col-md-3
+.text-container
+  .container
+    .row
+      .col-md-12
+        %p
+          <b>P</b>henomenal<br />
+          <b>E</b>xcellent<br />
+          <b>N</b>otable<br />
+          <b>G</b>orgeous
+          <br /><br />
+          Certified Peng is a new popularity and aesthetic metric. Certified Peng pinpoints quality content (news, images, video, products).
+          %br
+          %br
+          Use the Peng button to find out what is trending and what is popular in terms of news and products and snapshots of life. Engage with Generation Z millennials and older (young at heart, with their finger on the pulse) audiences.
+          %br
+          %br
+          Use the Certified Peng like button to drive interest in your content, products, or vanity snapshots. We have a dashboard that allows a closer look at who is liking your content and where. Join the Certified Peng network today.
+          %br
+          %br
 
 

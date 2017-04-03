@@ -1,13 +1,14 @@
-
-.image-panel
+.image-container
   .row
-    .col-md-12.text-center
-      %h2
-        Fashion
-      .category-image
-        = image_tag 'merch-girl.jpg', class: 'image-video-box'
+    .col-md-12
+      .image-content.text-center
+        %h2
+          Fashion
+        .category-image
+          = image_tag 'merch-girl.jpg', class: 'image-box-large'
 
-.category-desc
+
+.text-container
   .row
     .container
       .col-md-2
@@ -51,35 +52,40 @@
           = image_tag('pay-with-stripe.jpg', :class => "stripe-logo")
       .col-md-2
 
-.share-links
-  .row
-    .col-md-4.text-center
-      %p
-        = link_to "#", onclick: 'share_facebook(event);', class:'click' do
-          Share Facebook
-    .col-md-4.text-center
-      %p
-        %a{:href => "whatsapp://send?text=Share on whatsapp"} Share on WhatsApp
-    .col-md-4.text-center
-      %p
-        = link_to '#', onclick: 'share_twitter(event);', class:'click' do
-          %script{ type: "text/javascript", src:  "//newsharecounts.s3-us-west-2.amazonaws.com/nsc.js"}
-          Share Twitter
+.social-links
+  .container
+    .row
+      .col-md-4.text-center
+        %p
+          = link_to "#", onclick: 'share_facebook(event);', class:'click' do
+            Share Facebook
+      .col-md-4.text-center
+        %p
+          %a{:href => "whatsapp://send?text=Share on whatsapp"} Share on WhatsApp
+      .col-md-4.text-center
+        %p
+          = link_to '#', onclick: 'share_twitter(event);', class:'click' do
+            %script{ type: "text/javascript", src:  "//newsharecounts.s3-us-west-2.amazonaws.com/nsc.js"}
+            Share Twitter
+    %hr
 
-.main-text
-  %h3 Get the Certified Peng button for your content:
-.row
-  .col-lg-3.col-md-3.col-xs-0
-  .col-lg-6.col-md-6.col-xs-12
-    .script-box
-      = "<div class='sinatra-like-button'>"
-      %br
-      = "<script src='https://www.certifiedpeng.com/like-button/TAG-NAME' type='text/javascript'></script>"
-      %br
-      = '</div>'
-  .col-lg-3.col-md-3.col-xs-0
-
-
+.script-container
+  .container
+    .row
+      .col-md-2
+      .col-md-8
+        .panel-group
+          .panel.panel-default
+            .panel-body
+              %h4.text-center
+                Get the Certified Peng button for your content:
+            .panel-heading{style: 'color: #615e5e; font-size: 15px;'}
+              = "<div class='sinatra-like-button'>"
+              %br
+              = "  <script src='https://www.certifiedpeng.com/like-button/TAG-NAME' type='text/javascript'></script>"
+              %br
+              = '</div>'
+      .col-md-2
 
 :javascript
   function share_facebook() {

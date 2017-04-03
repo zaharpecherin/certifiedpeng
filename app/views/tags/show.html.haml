@@ -1,19 +1,24 @@
 
-.main-text
-  %h3 Get the Certified Peng button for your content using your TAG - #{@tag.tag_name}:
-  %br
-.row
-  .col-lg-3.col-md-3.col-xs-0
-  .col-lg-6.col-md-6.col-xs-12
-    .script-box
-      = "<div class='sinatra-like-button'>"
-      %br
-      = "<script src='https://www.certifiedpeng.com/like-button/TAG-NAME' type='text/javascript'></script>"
-      %br
-      = '</div>'
-  .col-lg-3.col-md-3.col-xs-0
+.script-container
+  .container
+    .row
+      .col-md-2
+      .col-md-8
+        .panel-group
+          .panel.panel-default
+            .panel-body
+              %h4.text-center
+                Get the Certified Peng button for your content using your TAG - #{@tag.tag_name}:
+            .panel-heading{style: 'color: #615e5e; font-size: 15px;'}
+              = "<div class='sinatra-like-button'>"
+              %br
+              = "  <script src='https://www.certifiedpeng.com/like-button/#{@tag.tag_name}' type='text/javascript'></script>"
+              %br
+              = '</div>'
+      .col-md-2
+    %hr
 
-.my-tags-steps
+.text-container
   .row
     .col-md-3
     .col-md-6

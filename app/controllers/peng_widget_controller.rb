@@ -10,9 +10,7 @@ class PengWidgetController < ApplicationController
   # create like
   def like
     url = params[:url]
-    if url.last == '/'
-      url = url.chop
-    end
+    url = url.chop if url.last == '/'
 
     likes = Like.where(url: url, tag_name: params[:tag_name])
     like_page_by_ip_rel = likes.where(ip: request.ip)
@@ -32,9 +30,7 @@ class PengWidgetController < ApplicationController
   # get like count
   def page_like_count
     url = params[:url]
-    if url.last == '/'
-      url = url.chop
-    end
+    url = url.chop if url.last == '/'
 
     likes = Like.where(url: url, tag_name: params[:tag_name])
     like_page_by_ip = likes.where(ip: request.ip).first

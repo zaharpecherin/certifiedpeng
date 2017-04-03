@@ -15,14 +15,17 @@ before_action :configure_sign_up_params, only: [:create]
     if resource.persisted?
       if resource.active_for_authentication?
         if params[:tags].present?
+          flash_message = ['Welcome! You have signed up successfully']
           tags = params[:tags].split(',')
-          unless Tag.exist?(tags)
-            tags.each do |tag|
+          tags.each do |tag|
+            if Tag.exists?(tag_name: tag)
+              flash_message << "Tag '#{tag}' you entered already exists"
+            else
               Tag.create(user_id: resource.id, tag_name: tag)
             end
           end
         end
-        set_flash_message! :notice, :signed_up
+        flash[:notice] = flash_message.join(', ')
         sign_up(resource_name, resource)
         NotificationMailer.confirmation_email(resource.email, resource.name).deliver
         respond_with resource, location: after_sign_up_path_for(resource)

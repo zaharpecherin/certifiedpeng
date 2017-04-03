@@ -19,13 +19,12 @@ class User < ActiveRecord::Base
     Purchase.where(email: self.email)
   end
 
-  def get_statistic
+  def get_user_statistic
     tags =  self.tags.select(:tag_name).to_sql
-    Like.where("tag_name IN (#{tags})").select("COUNT(*) AS like_count, url, tag_name,  MIN(created_at) AS created_at, string_agg(country, ', ') AS countries").group(:url, :tag_name).order('like_count DESC')
+    Like.where("tag_name IN (#{tags})").get_statistic
   end
 
   def limits_of_tags?
     self.tags.count == Tag::MAX_TAGS_COUNT
   end
-
 end

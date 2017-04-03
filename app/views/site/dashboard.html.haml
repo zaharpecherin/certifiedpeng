@@ -19,8 +19,14 @@
 
 - if !@result.nil?
   - if @result.empty?
-    .not-found-text.text-center
-      Sorry, nothing found. Try it again
+    .container
+      .row
+        .col-md-2
+        .col-md-8
+          %br
+          .nothing-found.text-center
+            Sorry, nothing found. Try it again...
+        .col-md-2
   - else
     .dashboard-box.text-center
       %h3
