@@ -174,10 +174,9 @@
 
   function ready() {
     window.onerror = function(){
-      includeJquery();
+      includeXdomainrequest();
     }
     includeJquery();
-
   }
 
   document.addEventListener('DOMContentLoaded', ready);
