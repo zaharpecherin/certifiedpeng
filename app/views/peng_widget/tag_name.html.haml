@@ -37,6 +37,9 @@
 
 
   function like() {
+    $(window).error(function(e){
+          e.preventDefault();
+    });
     $('.likeButton').click(function(e) {
       e.preventDefault();
       $.ajax({
@@ -57,6 +60,9 @@
   }
 
   function pageLikeCount() {
+    $(window).error(function(e){
+          e.preventDefault();
+    });
     $.ajax({
       url: 'https://' + domain + '/page-like-count?tag_name=' + tag_name + '&url=' + url,
       method: 'GET',
