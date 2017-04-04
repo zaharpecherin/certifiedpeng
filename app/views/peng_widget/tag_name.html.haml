@@ -158,7 +158,8 @@
     });
   }
 
-  function ready() {
+  function ready(a='a') {
+    console.log(a);
     console.log(typeof jQuery);
     if (typeof jQuery == 'undefined') {
       loadScript('https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js', function() {
@@ -176,7 +177,8 @@
   document.addEventListener('DOMContentLoaded', ready);
 
   window.onerror = function(){
-    ready();
+    console.log(1);
+    ready('b');
   }
 
   if(document.getElementById) {
