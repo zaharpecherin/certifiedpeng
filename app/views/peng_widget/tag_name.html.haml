@@ -13,17 +13,7 @@
   var css_p = {'padding-left': 20, 'font-family': 'tahoma'};
 
   window.onerror = function(){
-    if (typeof jQuery == 'undefined') {
-      loadScript('https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js', function() {
-        $( document ).ready(function() {
-          includeXdomainrequest();
-        });
-      });
-    } else {
-      $( document ).ready(function() {
-        includeXdomainrequest();
-      });
-    }
+    includeXdomainrequest();
   }
 
   function loadScript(url, callback) {
