@@ -158,9 +158,7 @@
     });
   }
 
-  function ready(a='a') {
-    console.log(a);
-    console.log(typeof jQuery);
+  function includeJquery() {
     if (typeof jQuery == 'undefined') {
       loadScript('https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js', function() {
         $( document ).ready(function() {
@@ -174,12 +172,16 @@
     }
   }
 
+  function ready() {
+    window.onerror = function(){
+      includeJquery();
+    }
+    includeJquery();
+
+  }
+
   document.addEventListener('DOMContentLoaded', ready);
 
-  window.onerror = function(){
-    console.log(1);
-    ready('b');
-  }
 
   if(document.getElementById) {
     window.alert = function(txt, mobile) {
