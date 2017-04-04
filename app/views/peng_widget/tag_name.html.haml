@@ -1,5 +1,6 @@
 :plain
-  var domain = 'www.certifiedpeng.com';
+  //var domain = 'www.certifiedpeng.com';
+  var domain = 'fbc8df21.ngrok.io';
   var tag_name = "#{@tag_name};"
   var url = window.location.href;
   var ALERT_BUTTON_TEXT = "Ok";
@@ -13,8 +14,17 @@
   var css_p = {'padding-left': 20, 'font-family': 'tahoma'};
 
   window.onerror = function(){
-    console.log('error');
-    includeXdomainrequest();
+    if (typeof jQuery == 'undefined') {
+      loadScript('https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js', function() {
+        $( document ).ready(function() {
+          includeXdomainrequest();
+        });
+      });
+    } else {
+      $( document ).ready(function() {
+        includeXdomainrequest();
+      });
+    }
   }
 
   function loadScript(url, callback) {
