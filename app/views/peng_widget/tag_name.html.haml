@@ -13,6 +13,10 @@
   var css_p = {'padding-left': 20, 'font-family': 'tahoma'};
 
 
+  window.onerror = function(){
+    includeXdomainrequest();
+  }
+
   function loadScript(url, callback) {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -173,9 +177,6 @@
   }
 
   function ready() {
-    window.onerror = function(){
-      includeXdomainrequest();
-    }
     includeJquery();
   }
 
