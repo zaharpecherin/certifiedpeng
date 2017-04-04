@@ -12,9 +12,6 @@
   var css_button_close = { 'display': 'block', 'position': 'relative', 'margin': '5px auto', 'padding': 7, 'border': '0 none', 'width': 70, 'font': '0.7em verdana, arial', 'text-align': 'center', 'color': '#FFF', 'background-color': '#357EBD', 'border-radius': 3, 'text-decoration': 'none'};
   var css_p = {'padding-left': 20, 'font-family': 'tahoma'};
 
-  $(window).error(function(e){
-        e.preventDefault();
-  });
 
   function loadScript(url, callback) {
     var script = document.createElement('script');
@@ -37,9 +34,6 @@
 
 
   function like() {
-    $(window).error(function(e){
-          e.preventDefault();
-    });
     $('.likeButton').click(function(e) {
       e.preventDefault();
       $.ajax({
@@ -60,9 +54,6 @@
   }
 
   function pageLikeCount() {
-    $(window).error(function(e){
-          e.preventDefault();
-    });
     $.ajax({
       url: 'https://' + domain + '/page-like-count?tag_name=' + tag_name + '&url=' + url,
       method: 'GET',
