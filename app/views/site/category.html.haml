@@ -6,8 +6,10 @@
           = @category.name.capitalize
         - if @category.name == 'fashion'
           = image_tag 'merch-girl.jpg', class: 'image-box-large'
-        - else
-          = image_tag 'image-video.png', class: 'image-box-large', style: 'border: 1px solid;'
+        - elsif @category.name == 'tech'
+          = image_tag 'creative-aurvana-headphones.jpg', class: 'image-box-large'
+        - elsif @category.name == 'life'
+          %iframe{allowfullscreen:  "", frameborder: "0", src: "//www.youtube.com/embed/yJjK9QY2WuE", class: 'life-video-content'}
 
 .text-container
   .row
@@ -54,16 +56,41 @@
               )
             .stripe-box
               = image_tag('pay-with-stripe.jpg', :class => "main-logo")
-          - else
-            %h3.text-center
-              Title
-            %br
-            %p Check This Out some copy text and some more copy text Check This Out some copy text and some more copy textCheck This Out some copy text and some more copy text Check This Out some copy text and some more copy text
-            %p Check This Out some copy text and some more copy text Check This Out some copy text and some more copy textCheck This Out some copy text and some more copy text Check This Out some copy text and some more copy text
-            %p Check This Out some copy text and some more copy text Check This Out some copy text and some more copy textCheck This Out some copy text and some more copy text Check This Out some copy text and some more copy text
-            %p Check This Out some copy text and some more copy text Check This Out some copy text and some more copy textCheck This Out some copy text and some more copy text Check This Out some copy text and some more copy text
             %hr
-      .col-md-8
+          - elsif @category.name == 'tech'
+            %b
+              %p.text-center
+                The Creative Aurvana ANC Headphones
+            %br
+            %p
+              It's not all about Beats and the iconic, white Apple buds. There are other high quality headphones on the market. Creative are specialists in audio equipment that bring the richness of sound to the customer.
+            %p
+              I've been digging Creative since they were releasing 500MB mini MP3 players. Their kit is sweet.
+            %p
+              These bad boys are the Aurvana range of headphone: Noise-isolating, foldable headphones with remote and microphone for calls. Not cheap (at £99) but not as expensive as Beats and comparable (if not better) audio quality. Try them...
+            %p
+              %a{href: "http://uk.creative.com/p/headphones-headsets/aurvana-anc", title: "Creative Aurvana ANC", target: "_blank"} Creative Aurvana ANC >
+            %hr
+          - elsif @category.name == 'life'
+            %b
+              %p.text-center
+                The Chicken Connoisseur
+                %br Ambassador or Peng
+            %br
+            %p
+              A visit to the humble, local chicken takeaway restaurant will never be the same. Is Bossman your surrogate dad? It could be that deep!
+            %p
+              2017 has seen the rise of the Chicken Connoisseur - he (Elijah Quashie) of
+              %span
+                %a{href: "https://www.youtube.com/channel/UCZFmxd9L1btyXig-2Dp9XnA", title: "The Pengest Munch", target: "_blank"} The Pengest Munch
+              %span
+                YouTube channel.
+            %p
+              They say that the best ideas are simple - reviewing local chicken takeaway restaurants is a deceptively simple idea. The charm of the poultry-loving connoisseur is what makes  these videos a breakout hit. His real age is a mystery (at least for the masses who don't know him). He is clearly a fan of this type of takeaway grub and gives as much critical detail as he can in the reviews - he's like an urban TripAdvisor for chicken takeaways - and adds a healthy dollop of humour and mandem diction to spice up the meal review...and ting!  His other passion is that of creps - trainers (sneakers to our US viewers). The crep check that precedes each review are a delight for millennial wordsmiths ('Redington', 'Meshington', 'piff').
+            %p
+              Keep 'em coming Connoissuer :>)
+            %hr
+      .col-md-2
 
 .social-links
   .container
