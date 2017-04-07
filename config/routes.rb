@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     get '/users', to: 'users/registrations#new'
   end
 
-  resources :tags, only: [:index, :show, :create]
+  resources :tags, only: [:index, :show, :create] do
+    member do
+      post '/rename-tagname', action: 'rename_tag'
+    end
+  end
   resources :purchases, only: [:create, :index]
   resources :subscribers, only: [:new, :create]
   post '/stripe/webhooks', to: "stripe#webhooks"

@@ -1,4 +1,3 @@
-
 .purchases-title
   %h1
     Your Dashboard
@@ -32,55 +31,61 @@
       %h3
         Search result:
     .result
-      %table.table
-        %thead
-          %tr
-            %th
-            %th Url
-            %th Tag name
-            %th Like count
-            %th Tracking since
-        %tbody
-          - @result.each do |r|
-            %tr
-              %th{:scope => "row"}
-                %td
-                  = r[:url]
-                %td
-                  = r[:tag_names]
-                %td
-                  = r[:count]
-                %td
-                  = r[:date]
+      .container
+        .row
+          .col-md-12
+            %table.table
+              %thead
+                %tr
+                  %th
+                  %th Url
+                  %th Tag name
+                  %th Like count
+                  %th Tracking since
+              %tbody
+                - @result.each do |r|
+                  %tr
+                    %th{:scope => "row"}
+                      %td
+                        = r[:url]
+                      %td
+                        = r[:tag_names]
+                      %td
+                        = r[:count]
+                      %td
+                        = r[:date]
 
 .dashboard-box.text-center
   %h3
     Your Certified Peng analytics:
 -if @user_tags_statistic.present?
   .result
-    %table.table
-      %thead
-        %tr
-          %th
-          %th Tag name
-          %th Url
-          %th Like count
-          %th Tracking since
-          %th Countries
-      %tbody
-        - @user_tags_statistic.each do |statistic|
-          %tr.link-tr
-            %th{:scope => "row"}
-              %td
-                = statistic.tag_name
-              %td
-                = statistic.url
-              %td
-                = statistic.like_count
-              %td
-                = statistic.created_at.strftime("%d %b %Y")
-              %td
-                = statistic.countries
+    .container
+      .row
+        .col-md-12
+          %table.table
+            %thead
+              %tr
+                %th
+                %th Tag name
+                %th Url
+                %th Like count
+                %th Tracking since
+                %th Countries
+            %tbody
+              - @user_tags_statistic.each do |statistic|
+                %tr.link-tr
+                  %th{:scope => "row"}
+                    %td
+                      = statistic.tag_name
+                    %td
+                      = statistic.url
+                    %td
+                      = statistic.like_count
+                    %td
+                      = statistic.created_at.strftime("%d %b %Y")
+                    %td
+                      = statistic.countries.split(', ').uniq.join(', ')
 - else
   .result
     .row
@@ -94,30 +99,56 @@
         = link_to 'click here >', tags_path
       .col-md-2
 
+- if !current_user.admin?
+  .dashboard-box.text-center
+    %h3
+      Top 3 most clicked:
+  -if @top_three_likes.present?
+    .result
+      .container
+        .row
+          .col-md-12
+            %table.table
+              %thead
+                %tr
+                  %th
+                  %th Tag name
+                  %th Url
+                  %th Total count of clicks
+              %tbody
+                - @top_three_likes.each do |top|
+                  %tr
+                    %th{:scope => "row"}
+                      %td
+                        = top.tag_name
+                      %td
+                        = top.url
+                      %td
+                        = top.like_count
 
 - if current_user.admin?
   .dashboard-box.text-center
     %h3
-      Top 10 most clicked:
+      Top 30 most clicked:
   -if @top_likes.present?
     .result
-      %table.table
-        %thead
-          %tr
-            %th
-            %th Url
-            %th Tag name
-            %th Like count
-            %th Tracking since
-        %tbody
-          - @top_likes.each do |top|
-            %tr
-              %th{:scope => "row"}
-                %td
-                  = top.url
-                %td
-                  = top.tag_name
-                %td
-                  = top.like_count
-                %td
-                  = top.created_at.strftime("%d %b %Y")
+      .container
+        .row
+          .col-md-12
+            %table.table
+              %thead
+                %tr
+                  %th
+                  %th Tag name
+                  %th Url
+                  %th Total count of clicks
+              %tbody
+                - @top_likes.each do |top|
+                  %tr
+                    %th{:scope => "row"}
+                      %td
+                        = top.tag_name
+                      %td
+                        = top.url
+                      %td
+                        = top.like_count

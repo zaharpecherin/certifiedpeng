@@ -1,3 +1,19 @@
+%h3.text-center
+  Edit your tag:
+%p.text-center
+  You can edit your tag only once
+.new-tag
+  .container
+    .row
+      .col-md-4
+      .col-md-4
+        = form_tag rename_tagname_tag_path do
+          .input-group
+            = text_field_tag 'tag', @tag.tag_name, class: 'form-control'
+            %span.input-group-btn
+              = submit_tag 'Edit',class: 'btn btn-default'
+      .col-md-4
+    %hr
 
 .script-container
   .container
