@@ -8,6 +8,7 @@ class SiteController < ApplicationController
 
   def dashboard
     @top_likes = Like.get_statistic.limit(10)
+    @top_three_likes = @top_likes.first(3)
     @user_tags = current_user.tags.pluck(:tag_name).join(', ')
 
     @not_added_tags = Tag::MAX_TAGS_COUNT - current_user.tags.count
