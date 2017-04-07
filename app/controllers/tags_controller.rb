@@ -26,12 +26,12 @@ class TagsController < ApplicationController
   def rename_tag
     @tag = Tag.find_by_id(params[:id])
     likes = Like.find_by_tag_name(@tag.tag_name)
-    if likes && params[:tag].present?
+    if likes
       flash[:error] = "This tag already has 'likes' and you can not edit this tag"
-    elsif !@tag.edited && params[:tag] && !likes
+    elsif !@tag.edited && !likes
       @tag.update_attributes(tag_name: params[:tag], edited: true)
       flash[:notice] = 'Your tag was successfully updated'
-    elsif @tag.edited && params[:tag]
+    elsif @tag.edited
       flash[:error] = 'You can edit tag only once'
     end
     redirect_to tag_path

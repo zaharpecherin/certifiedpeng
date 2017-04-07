@@ -65,7 +65,7 @@
       crossDomain: true,
       dataType: 'json',
       success: function(data) {
-        $.when($('.sinatra-like-button').append('<a href=""><span><img class="likeButton" src="/assets/certified-peng-button.png" width="64px" style="vertical-align: middle;"></span></a>')).then(like());
+        $.when($('.sinatra-like-button').append('<a href=""><span><img class="likeButton" src="https://s22.postimg.org/ysw3b5mwx/certified_peng_button.png" width="64px" style="vertical-align: middle;"></span></a>')).then(like());
         if (data.liked == 1) {
           showCount(data);
         } else if ( data.liked == 0 && data.like_count > 0) {
