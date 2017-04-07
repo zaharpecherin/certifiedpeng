@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :tags, only: [:index, :show, :create] do
     member do
-      post '/rename-tagname', action: 'rename_tagname'
+      post '/rename-tagname', action: 'rename_tag'
     end
   end
   resources :purchases, only: [:create, :index]

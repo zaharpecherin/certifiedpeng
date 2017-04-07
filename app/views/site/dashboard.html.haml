@@ -31,26 +31,29 @@
       %h3
         Search result:
     .result
-      %table.table
-        %thead
-          %tr
-            %th
-            %th Url
-            %th Tag name
-            %th Like count
-            %th Tracking since
-        %tbody
-          - @result.each do |r|
-            %tr
-              %th{:scope => "row"}
-                %td
-                  = r[:url]
-                %td
-                  = r[:tag_names]
-                %td
-                  = r[:count]
-                %td
-                  = r[:date]
+      .container
+        .row
+          .col-md-12
+            %table.table
+              %thead
+                %tr
+                  %th
+                  %th Url
+                  %th Tag name
+                  %th Like count
+                  %th Tracking since
+              %tbody
+                - @result.each do |r|
+                  %tr
+                    %th{:scope => "row"}
+                      %td
+                        = r[:url]
+                      %td
+                        = r[:tag_names]
+                      %td
+                        = r[:count]
+                      %td
+                        = r[:date]
 
 .dashboard-box.text-center
   %h3
