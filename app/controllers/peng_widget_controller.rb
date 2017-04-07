@@ -12,11 +12,7 @@ class PengWidgetController < ApplicationController
     url = params[:url]
     url = url.chop if url.last == '/'
 
-    if url.include? 'www'
-      url = url.split('www.')[1]
-    else
-      url = url.split('//')[1]
-    end
+    url =  change_url(url)
 
     likes = Like.where(url: url, tag_name: params[:tag_name])
     like_page_by_ip_rel = likes.where(ip: request.ip)
@@ -38,11 +34,7 @@ class PengWidgetController < ApplicationController
     url = params[:url]
     url = url.chop if url.last == '/'
 
-    if url.include? 'www'
-      url = url.split('www.')[1]
-    else
-      url = url.split('//')[1]
-    end
+    url =  change_url(url)
 
     likes = Like.where(url: url, tag_name: params[:tag_name])
     like_page_by_ip = likes.where(ip: request.ip).first
@@ -52,6 +44,15 @@ class PengWidgetController < ApplicationController
 
 
   private
+
+  def change_url(url)
+    if url.include? 'www'
+      url = url.split('www.')[1]
+    else
+      url = url.split('//')[1]
+    end
+    url
+  end
 
   def set_access_control_headers
     headers['Content-Type'] = 'text/javascript; charset=utf8'
