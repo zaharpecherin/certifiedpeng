@@ -21,7 +21,11 @@ class TagsController < ApplicationController
 
   def show
     @tag = Tag.find_by_id(params[:id])
-     likes = Like.find_by_tag_name(@tag.tag_name)
+  end
+
+  def rename_tagname
+    @tag = Tag.find_by_id(params[:id])
+    likes = Like.find_by_tag_name(@tag.tag_name)
     if likes && params[:tag].present?
       flash[:error] = "This tag already has 'likes' and you can not edit this tag"
     elsif !@tag.edited && params[:tag] && !likes
@@ -29,6 +33,7 @@ class TagsController < ApplicationController
     elsif @tag.edited && params[:tag]
       flash[:error] = 'You can edit tag only once'
     end
+    redirect_to tag_path
   end
 
   private

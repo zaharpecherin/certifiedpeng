@@ -96,7 +96,7 @@
         = link_to 'click here >', tags_path
       .col-md-2
 
-- if current_user.admin?
+- if !current_user.admin?
   .dashboard-box.text-center
     %h3
       Top 3 most clicked:
