@@ -12,8 +12,22 @@ class PengWidgetController < ApplicationController
     url = params[:url]
     url = url.chop if url.last == '/'
 
-    likes = Like.where(url: url, tag_name: params[:tag_name])
+    if url.include? 'www'
+      similar_url = url.split('www.').join('')
+    else
+      if url.include? 'https'
+        similar_url = url.insert(8,'www.')
+      else
+        similar_url = url.insert(7,'www.')
+      end
+    end
+
+    origin_url = params[:url].chop if params[:url].last == '/'
+
+    similar_url_likes = Like.where(url: similar_url, tag_name: params[:tag_name])
+    likes = Like.where(url: origin_url, tag_name: params[:tag_name])
     like_page_by_ip_rel = likes.where(ip: request.ip)
+    similar_like_page_by_ip = similar_url_likes.where(ip: request.ip).first
     like_page_by_ip = like_page_by_ip_rel.first
     like_page = like_page_by_ip_rel.first_or_create
     Like.delay.set_location(like_page)
@@ -23,7 +37,7 @@ class PengWidgetController < ApplicationController
       mobile = 1
     end
 
-    render json: { like_count: likes.count, liked: (like_page_by_ip ? 1 : 0), mobile: mobile }
+    render json: { like_count: likes.count + similar_url_likes.count, liked: (like_page_by_ip ? 1 : (similar_like_page_by_ip ? 1 : 0)) , mobile: mobile }
   end
 
 
@@ -32,10 +46,26 @@ class PengWidgetController < ApplicationController
     url = params[:url]
     url = url.chop if url.last == '/'
 
-    likes = Like.where(url: url, tag_name: params[:tag_name])
+    if url.include? 'www'
+      similar_url = url
+      similar_url = similar_url.split('www.').join('')
+    else
+      if url.include? 'https'
+        similar_url = url
+        similar_url = similar_url.insert(8,'www.')
+      else
+        similar_url = url
+        similar_url = similar_url.insert(7,'www.')
+      end
+    end
+    origin_url = params[:url].chop if params[:url].last == '/'
+
+    likes = Like.where(url: origin_url, tag_name: params[:tag_name])
+    similar_url_likes = Like.where(url: similar_url, tag_name: params[:tag_name])
+    similar_like_page_by_ip = similar_url_likes.where(ip: request.ip).first
     like_page_by_ip = likes.where(ip: request.ip).first
 
-    render json: { like_count: likes.count, liked: (like_page_by_ip ? 1 : 0) }
+    render json: { like_count: likes.count + similar_url_likes.count, liked: (like_page_by_ip ? 1 : (similar_like_page_by_ip ? 1 : 0))  }
   end
 
 
