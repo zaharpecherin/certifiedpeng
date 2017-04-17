@@ -46,6 +46,6 @@ class SiteController < ApplicationController
   private
 
     def check_subscribtion
-      redirect_to new_subscriber_path if current_user && !current_user.subscriber?
+      redirect_to new_subscriber_path if current_user && !current_user.admin? && !current_user.subscriber?
     end
 end
