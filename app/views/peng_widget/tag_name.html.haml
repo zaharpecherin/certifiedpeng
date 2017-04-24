@@ -39,7 +39,7 @@
     },
 
     like: function() {
-      $('.likeButton').click(function(e) {
+      $("script[src$='/" + "#{@tag_name}" + "']").parents('.sinatra-like-button').find('.likeButton').click(function(e) {
         e.preventDefault();
         $.ajax({
           url: 'https://' + domain + '/like?tag_name=' + "#{@tag_name}" + '&url=' + url,
