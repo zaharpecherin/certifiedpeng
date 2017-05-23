@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_one :subscriber
 
   def admin?
-    self.id == 1
+    id == 1
   end
 
   def subscriber?
@@ -25,6 +25,14 @@ class User < ActiveRecord::Base
   end
 
   def limits_of_tags?
-    self.tags.count == Tag::MAX_TAGS_COUNT
+    if exist_purchase?
+      self.tags.count == Tag::MAX_TAGS_COUNT
+    else
+      self.tags.count == Tag::TAGS_COUNT
+    end
+  end
+
+  def exist_purchase?
+    Purchase.find_by_email(self.email).present?
   end
 end

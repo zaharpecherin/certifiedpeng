@@ -2,7 +2,8 @@ class TagsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @not_added_tags = Tag::MAX_TAGS_COUNT - current_user.tags.count
+    @not_added_tags = Tag::TAGS_COUNT - current_user.tags.count
+    @purhace_tags = Tag::MAX_TAGS_COUNT - current_user.tags.count
     @tags = current_user.tags
   end
 
@@ -12,7 +13,7 @@ class TagsController < ApplicationController
       flash[:error] = error
     else
       Tag.create(tag_name: params[:tag], user_id: current_user.id)
-        if current_user.limits_of_tags?
+        if !current_user.admin? && current_user.limits_of_tags?
           flash[:alert] = 'You have reached your limit of Certified Peng tracking tag allowance'
         end
     end
@@ -40,8 +41,8 @@ class TagsController < ApplicationController
   private
 
   def get_error(tag)
-    if current_user.limits_of_tags?
-      'You cant add more then 5 tags'
+    if !current_user.admin? && current_user.limits_of_tags?
+      'You cant add more tags'
     elsif tag.include?(' ') || tag.include?(',')
       'Tag must not contain spaces or commas'
     elsif Tag.exists?(tag_name: tag)

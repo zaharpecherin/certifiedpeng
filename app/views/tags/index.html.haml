@@ -2,7 +2,12 @@
 %h1.text-center
   Your Tags
 %p.text-center
-  You can track 5 Tags per account. You can still add #{@not_added_tags} tags.
+  - if current_user.admin?
+    You can add an unlimited number of tags
+  - elsif !current_user.admin? && current_user.exist_purchase?
+    You have made purchases and you can add more tags - #{@purhace_tags}
+  - else
+    You can track 5 Tags per account. You can still add #{@not_added_tags} tags
 
 .new-tag
   .row

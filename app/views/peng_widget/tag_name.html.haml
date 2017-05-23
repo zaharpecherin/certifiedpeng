@@ -81,6 +81,12 @@
     },
 
     showLikeText: function(data) {
+      if ( typeof like_count != 'undefined') {
+        var button_container = $("script[src$='/" + "#{@tag_name}" + "']").parents('.sinatra-like-button');
+        $(button_container).each(function( index , el) {
+          $(el).find('.likeCount').remove();
+        });
+      }
       like_count = document.createElement('span');
       $(like_count).addClass('likeCount');
       var text = ' agree on this Pengness';

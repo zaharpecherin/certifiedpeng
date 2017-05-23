@@ -11,7 +11,7 @@ class SiteController < ApplicationController
     @top_three_likes = @top_likes.first(3)
     @user_tags = current_user.tags.pluck(:tag_name).join(', ')
 
-    @not_added_tags = Tag::MAX_TAGS_COUNT - current_user.tags.count
+    @not_added_tags = Tag::TAGS_COUNT - current_user.tags.count
 
     @user_tags_statistic = current_user.get_user_statistic if current_user.tags.any?
     @result = Like.search_request(params[:search])
