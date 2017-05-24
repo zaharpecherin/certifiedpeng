@@ -13,14 +13,10 @@
 
   if (typeof buttons == 'undefined')
     var buttons = {};
-  if (typeof tag_names == 'undefined')
-    var tag_names = {};
-
-  tag_names["#{@tag_name}"] = "#{@tag_name}";
 
   window.onerror = function(){
-    $.each( tag_names, function( key, value ) {
-      includeXdomainrequest(value);
+    $.each( buttons, function( key ) {
+      includeXdomainrequest(key);
     });
   }
 
@@ -205,9 +201,9 @@
     document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
   }
 
-  function includeXdomainrequest(value) {
-    buttons[value].loadScript('https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.3/jquery.xdomainrequest.min.js', function() {
-      buttons[value].includeWhatsAppSharing();
+  function includeXdomainrequest(key) {
+    buttons[key].loadScript('https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.3/jquery.xdomainrequest.min.js', function() {
+      buttons[key].includeWhatsAppSharing();
     });
   }
 
