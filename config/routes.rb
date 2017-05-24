@@ -14,7 +14,11 @@ Rails.application.routes.draw do
       post '/rename-tagname', action: 'rename_tag'
     end
   end
-  resources :purchases, only: [:create, :index]
+  resources :purchases, only: [:create, :index] do
+    collection do
+      get '/confirm-purchase', action: 'confirm_purchase'
+    end
+  end
   resources :subscribers, only: [:new, :create]
   post '/stripe/webhooks', to: "stripe#webhooks"
 

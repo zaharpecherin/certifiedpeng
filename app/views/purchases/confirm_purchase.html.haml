@@ -1,0 +1,15 @@
+.purchases-title
+  .row
+    .col-lg-3.col-md-2
+    .col-lg-6.col-md-8
+      .success-message
+        %p
+          Congratulations on buying your Certifed Peng
+          %b Cee Pee Tee Shirt!
+        %p Now that you have your certified uniform, join the club and start tracking content and seeing what's trending as Peng around the Internet. If you are a content owner, add the Certified Peng like button to your content TODAY
+        %p
+          - if current_user
+            = link_to 'Check my purchases', purchases_path
+          - else
+            = link_to 'Register here >', new_user_registration_path
+    .col-lg-3.col-md-2

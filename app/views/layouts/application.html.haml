@@ -8,8 +8,10 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload' unless current_page?(root_path)
     = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+    = render 'layouts/fb_javascript' if current_page?(merchandise_path)
     %title Certified Peng - Trending Content and Products Rated Peng
     %script{:src => "https://checkout.stripe.com/checkout.js"}
+    = render 'layouts/fb_new_purchase' if current_page?(confirm_purchase_purchases_path)
     :javascript
       var stripe_pub_key = "#{Rails.configuration.stripe[:publishable_key]}";
   %body
