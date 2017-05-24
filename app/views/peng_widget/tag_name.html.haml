@@ -199,6 +199,12 @@
     document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
   }
 
+  function includeXdomainrequest() {
+    buttons["#{@tag_name}"].loadScript('https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.3/jquery.xdomainrequest.min.js', function() {
+      buttons["#{@tag_name}"].includeWhatsAppSharing();
+    });
+  }
+
   if(document.getElementById) {
     window.alert = function(txt, mobile) {
       createCustomAlert(txt, mobile);
