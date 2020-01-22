@@ -24,8 +24,8 @@ before_action :configure_sign_up_params, only: [:create]
               Tag.create(user_id: resource.id, tag_name: tag)
             end
           end
+          flash[:notice] = flash_message.join(', ')
         end
-        flash[:notice] = flash_message.join(', ')
         sign_up(resource_name, resource)
         NotificationMailer.confirmation_email(resource.email, resource.name).deliver
         respond_with resource, location: after_sign_up_path_for(resource)
