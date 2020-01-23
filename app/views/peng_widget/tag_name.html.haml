@@ -44,7 +44,7 @@
       $("script[src$='/" + "#{@tag_name}" + "']").parents('.sinatra-like-button').find('.likeButton').click(function(e) {
         e.preventDefault();
         $.ajax({
-          url: 'https://' + domain + '/like?tag_name=' + "#{@tag_name}" + '&url=' + url,
+          url: 'http://' + domain + '/like?tag_name=' + "#{@tag_name}" + '&url=' + url,
           method: 'GET',
           cache: false,
           crossDomain: true,
@@ -62,7 +62,7 @@
 
     pageLikeCount: function() {
       $.ajax({
-        url: 'https://' + domain + '/page-like-count?tag_name=' + "#{@tag_name}" + '&url=' + url,
+        url: 'http://' + domain + '/page-like-count?tag_name=' + "#{@tag_name}" + '&url=' + url,
         method: 'GET',
         cache: false,
         crossDomain: true,
@@ -79,7 +79,7 @@
     },
 
     renderButton: function() {
-      $.when($("script[src$='/" + "#{@tag_name}" + "']").parents('.sinatra-like-button').append('<a href=""><span><img class="likeButton" src="https://s22.postimg.org/ysw3b5mwx/certified_peng_button.png" width="64px" style="vertical-align: middle;"></span></a>')).then(buttons["#{@tag_name}"].like());
+      $.when($("script[src$='/" + "#{@tag_name}" + "']").parents('.sinatra-like-button').append('<a href=""><span><img class="likeButton" src="https://i.postimg.cc/MKRzLwdr/peng-button.png" width="64px" style="vertical-align: middle;"></span></a>')).then(buttons["#{@tag_name}"].like());
     },
 
     showLikeText: function(data) {

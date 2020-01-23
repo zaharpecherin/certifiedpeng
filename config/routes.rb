@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   get '/terms', to: 'site#terms', as: :terms
   get '/about-us', to: 'site#about_us', as: :about_us
 
-  get '/like-button/:tag_name',to: 'peng_widget#tag_name'
+  get '/like-button/:tag_name', to: 'peng_widget#tag_name'
   get '/like', to: 'peng_widget#like'
   get '/page-like-count', to: 'peng_widget#page_like_count'
 
