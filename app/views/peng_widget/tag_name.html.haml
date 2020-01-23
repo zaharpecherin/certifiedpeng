@@ -44,7 +44,7 @@
       $("script[src$='/" + "#{@tag_name}" + "']").parents('.sinatra-like-button').find('.likeButton').click(function(e) {
         e.preventDefault();
         $.ajax({
-          url: 'http://' + domain + '/like?tag_name=' + "#{@tag_name}" + '&url=' + url,
+          url: 'https://' + domain + '/like?tag_name=' + "#{@tag_name}" + '&url=' + url,
           method: 'GET',
           cache: false,
           crossDomain: true,
@@ -62,7 +62,7 @@
 
     pageLikeCount: function() {
       $.ajax({
-        url: 'http://' + domain + '/page-like-count?tag_name=' + "#{@tag_name}" + '&url=' + url,
+        url: 'https://' + domain + '/page-like-count?tag_name=' + "#{@tag_name}" + '&url=' + url,
         method: 'GET',
         cache: false,
         crossDomain: true,
