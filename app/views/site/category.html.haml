@@ -5,11 +5,12 @@
         %h2
           = @category.name.capitalize
         - if @category.name == 'fashion'
-          = image_tag 'merch-girl.jpg', class: 'image-box-large'
-        - elsif @category.name == 'tech'
-          = image_tag 'creative-aurvana-headphones.jpg', class: 'image-box-large'
+          = image_tag 'chioma-jade.jpg', class: 'image-box-large', style: 'transform: scaleX(-1);'
+        - elsif @category.name == 'retail'
+          = link_to 'https://www.amazon.co.uk/gp/product/B07XRPPW5B/ref=as_li_tl?ie=UTF8&camp=1634&creative=6738&creativeASIN=B07XRPPW5B&linkCode=as2&tag=ebonyreads-21&linkId=e202fb521b2cb9f433d6250215d77dda', target: '_blank' do
+            = image_tag 'iphone-11.jpg', class: 'image-box-large'
         - elsif @category.name == 'life'
-          %iframe{allowfullscreen:  "", frameborder: "0", src: "//www.youtube.com/embed/yJjK9QY2WuE", class: 'life-video-content'}
+          %iframe{allowfullscreen:  "", frameborder: "0", src: "//www.youtube.com/embed/89CUc8aa8xQ", class: 'life-video-content'}
 
 .text-container
   .row
@@ -21,28 +22,39 @@
             %h3.text-center
               Certified Peng Merch
             %br
-            %p
-              <b>ALL stock introduction SALE: <font color="#bf3939 ">&#163;25 (inc. VAT)</font></b> ( <strike>&#163;35</strike> ) <b>NB: Postage: &#163;3.75 (Total Price: <font color="#bf3939 ">&#163;28.75</font>)</b>
-            %p
-              The official, exclusive design Certified Peng T-Shirt (the Cee Pee Tee) is available for mass consumption by the peng and aspirational peng! White, 100% cotton, twin-needle sleeves. Stand out from the crowd and make a statement this summer. <b>Get yours today.</b>
-            %p
-              We have womens (medium and large) and mens (large and XL) at the moment. Don't read anything in to those sizes...that's all that's left.
-            %p
-              %b
-                Washing instructions:
-            %p
-              Machine wash warm (inside out), with whites wash. Tumble dry medium.
+            %b
+              Get peng-ready for 2020! Introduction SALE:
+              %font{color: "#bf3939"} £30 (inc. VAT)
+            (
+            %strike £35
+            )
+            %b
+              NB: Postage: £3.75 (Total Price:
+              = succeed ")" do
+                %font{:color => "#bf3939 "} £33.75
+
             %br
+            %br
+            %p
+              The official, exclusive, Certified Peng T-Shirt (<b title="the Certified Peng t-shirt">the Cee Pee Tee</b>) is available for the discerning fashionista, the debonair mandem, the peng, and the aspirational peng!
+            %p
+              It's available exclusively from this Certified Peng website and comes in White, is 100% cotton, with twin-needle sleeves.
+            %p
+              %strog Stand out from the crowd and make a statement. It's a conversation starter! Get yours today - buy now below
+            %p
+              We have womens (small, medium) and mens (large and XL) at the moment.
+            %p
+              Ladies, the men's sizes make peng nighties (they look much better than his hoodie, for real!).
 
             %p
               %span
-                %b Womens' Medium
+                %b Womens' Small
               (
-              %a{class: 'buy-item', data: {item: 'Womens Medium'}} buy now >
+              %a{class: 'buy-item', data: {item: 'Womens Small'}} buy now >
               )
               %b Womens' Large
               (
-              %a{class: 'buy-item',data: {item: 'Womens Large'}} buy now >
+              %a{class: 'buy-item', data: {item: 'Womens Medium'}} buy now >
               )
             %p
               %span
@@ -54,59 +66,115 @@
               (
               %a{class: 'buy-item', data: {item: 'Mens Extra Large'}} buy now >
               )
+            %br
+            .text-center
+              = image_tag 'karl-leigh.jpg'
             .stripe-box
               = image_tag('pay-with-stripe.jpg', :class => "main-logo")
             %hr
-          - elsif @category.name == 'tech'
+          - elsif @category.name == 'retail'
             %b
               %p.text-center
-                The Creative Aurvana ANC Headphones
+                Apple iPhone 11 (128GB) - Black
             %br
             %p
-              It's not all about Beats and the iconic, white Apple buds. There are other high quality headphones on the market. Creative are specialists in audio equipment that bring the richness of sound to the customer.
+              2020 - The year of the slow-mo selfie (get ready for the jiggle!)
+            %br
+            .text-center
+              %iframe{allowfullscreen:  "", frameborder: "0", src: "//www.youtube.com/embed/KEc3aGjN228", class: 'life-video-content'}
+            %br
             %p
-              I've been digging Creative since they were releasing 500MB mini MP3 players. Their kit is sweet.
+              Apple has finally upped their camera game with the 11. Triple camera
+              and slow-mo capability (Baywatch Cam!). If tings ain't peng at regular
+              speed, slow things down.
+            %br
+            %ul
+              %li 6.1-inch Liquid Retina HD LCD display
+              %li Water and dust resistant (2 metres for up to 30 minutes, IP68)
+              %li Dual-camera system with 12MP Ultra Wide and Wide cameras; Night mode, Portrait mode, and 4K video up to 60fps
+              %li 12MP TrueDepth front camera with Portrait mode, 4K video, and Slo-Mo
+              %li Face ID for secure authentication and Apple Pay
+              %li A13 Bionic chip with third-generation Neural Engine
+              %li Fast-charge capable
+              %li Wireless charging
+            %br
             %p
-              These bad boys are the Aurvana range of headphone: Noise-isolating, foldable headphones with remote and microphone for calls. Not cheap (at £99) but not as expensive as Beats and comparable (if not better) audio quality. Try them...
+              Buy NOW on Amazon
+              = link_to 'Apple iPhone 11 (128GB) - White', 'https://www.amazon.co.uk/gp/product/B07XRPPW5B/ref=as_li_tl?ie=UTF8&camp=1634&creative=6738&creativeASIN=B07XRPPW5B&linkCode=as2&tag=ebonyreads-21&linkId=e202fb521b2cb9f433d6250215d77dda'
+              %img{:alt => "Apple iPhone 11", :border => "0", :height => "1", :src => "//ir-uk.amazon-adsystem.com/e/ir? t=ebonyreads-21&l=am2&o=2&a=B07XRPPW5B", :style => "border:none !important; margin:0px !important;", :width => "1"}/
+            %br
+            %strong Peng or Nah?
+            %br
+            %br
             %p
-              %a{href: "http://uk.creative.com/p/headphones-headsets/aurvana-anc", title: "Creative Aurvana ANC", target: "_blank"} Creative Aurvana ANC >
+              The Balenciaga Tyrex sneaker...with the square toe-end...come on...they are Ballys'
+              but are these ahead of the times or Certified Peng? They are Bally priced, of course.
+              Take a look for yourselves at the
+              = link_to 'Bally website >', 'https://www.balenciaga.com/gb/tyrex-shoes_cod11840115ff.html#/gb/all/tyrex-shoes', title: 'Bally Tyrex Sneaker', target: '_blank'
+            %br
+            .text-center
+              = link_to 'https://www.balenciaga.com/gb/tyrex-shoes_cod11840115ff.html#/gb/all/tyrex-shoes', title: 'Bally Tyrex Sneaker', target: '_blank' do
+                = image_tag 'bally-tyrex-sneaker.jpg'
             %hr
+            .row
+              .col-md-12.text-center
+                .like-content
+                  %p
+                    You like the content? Click the button...
+                .sinatra-like-button
+                  %script{:src => "https://www.certifiedpeng.com/like-button/certified-peng-retailpage", :type => "text/javascript"}
           - elsif @category.name == 'life'
             %b
               %p.text-center
-                The Chicken Connoisseur
-                %br Ambassador or Peng
+                Grime goes global
+                %br Drill becomes mainstream?
             %br
             %p
-              A visit to the humble, local chicken takeaway restaurant will never be the same. Is Bossman your surrogate dad? It could be that deep!
+              It's 2020 and Grime continues to evolve and break barriers and records. Main man Stormzy
+              moves on from headlining at Glastonbury 2019 to his first world tour. The main European
+              leg is before Brexit kicks in - smart move! Tickets available from
+              = link_to 'the Stormzy website.', 'https://www.stormzy.com/#tourSection', target: '_blank'
             %p
-              2017 has seen the rise of the Chicken Connoisseur - he (Elijah Quashie) of
-              %span
-                %a{href: "https://www.youtube.com/channel/UCZFmxd9L1btyXig-2Dp9XnA", title: "The Pengest Munch", target: "_blank"} The Pengest Munch
-              %span
-                YouTube channel.
+              J Hus is back with a banger of a new album ('Big Conspiracy') featuring collabos with
+              Koffee, Burna Boy among others. Chart success and more respect should follow.
             %p
-              They say that the best ideas are simple - reviewing local chicken takeaway restaurants is a deceptively simple idea. The charm of the poultry-loving connoisseur is what makes  these videos a breakout hit. His real age is a mystery (at least for the masses who don't know him). He is clearly a fan of this type of takeaway grub and gives as much critical detail as he can in the reviews - he's like an urban TripAdvisor for chicken takeaways - and adds a healthy dollop of humour and mandem diction to spice up the meal review...and ting!  His other passion is that of creps - trainers (sneakers to our US viewers). The crep check that precedes each review are a delight for millennial wordsmiths ('Redington', 'Meshington', 'piff').
+              How high will new star Aitch rise this year? He's moving from underground to mainstream.
+              Will he convert the hardcore grime massive? Only time and consistently fire bars will tell.
             %p
-              Keep 'em coming Connoissuer :>)
+              Which UK brand is utilising grime music and culture the best? Let's see what JD Sports and
+              Fashion do in 2020, and Ikea (another peng TV advert to follow the
+              = link_to '2019 Christmas advert?', 'https://www.youtube.com/watch?v=w0EKS2YfLc0', target: '_blank'
+            %p
+              %strong Tip for the UK Grime Scene:
+              Bring the top talent together for a tour and UK showcases or festivals. Brand the genre
+              to sell to the world. Come Brexit, Brits need to have more bargaining power to benefit Brits.
             %hr
-      .col-md-2
+            .row
+              .col-md-12.text-center
+                .like-content
+                  %p
+                    You like the content? Click the button...
+                .sinatra-like-button
+                  %script{:src => "https://www.certifiedpeng.com/like-button/certified-peng-homepage", :type => "text/javascript"}
 
 .social-links
   .container
     .row
-      .col-md-4.text-center
+      .col-md-3.text-center
         %p
           = link_to "#", onclick: 'share_facebook(event);', class:'click' do
             Share Facebook
-      .col-md-4.text-center
+      .col-md-3.text-center
         %p
           %a{:href => "whatsapp://send?text=Share on whatsapp"} Share on WhatsApp
-      .col-md-4.text-center
+      .col-md-3.text-center
         %p
           = link_to '#', onclick: 'share_twitter(event);', class:'click' do
             %script{ type: "text/javascript", src:  "//newsharecounts.s3-us-west-2.amazonaws.com/nsc.js"}
             Share Twitter
+      .col-md-3.text-center
+        %p
+          %a{href: "http://www.linkedin.com/shareArticle?mini=true&amp;url=https://simplesharebuttons.com", target: '_blank'} Share on LinkedIn
     %hr
 
 

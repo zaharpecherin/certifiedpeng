@@ -301,3 +301,26 @@ body {
   width: 560px;
   height: 315px;
 }
+
+.bold {
+  font-weight: bold;
+}
+
+.peng-letters {
+  padding: 20px 0;
+
+  p {
+    margin: 0px;
+  }
+
+  p::first-letter {
+    font-weight: bold;
+    color: #990000;
+  }
+}
+
+.like-content {
+  p {
+    font-size: 14px;
+  }
+}
